@@ -14,6 +14,9 @@ namespace Blackboard_2_0.Models.Data
 
         public List<Teaches> Teachers { get; set; }
 
+        public List<Attends> Students { get; set; }
+
+
 
     }
 }

@@ -13,7 +13,7 @@ namespace Blackboard_2_0.Models.Data
         public int AssignersId { get; set; }
         public Assigners Assigners { get; set; } 
         public int GraderId { get; set; }
-        public Grader Grader { get; set; }
+        public Teacher Grader { get; set; }
 
 
     }

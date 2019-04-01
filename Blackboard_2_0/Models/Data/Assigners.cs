@@ -11,11 +11,8 @@ namespace Blackboard_2_0.Models.Data
     {
         [Key]
         public int AssignersId { get; set; }
-
-        public int StudentId { get; set; }
-        public Student Student { get; set; }
-
         public List<HandIn> HandIns { get; set; }
+        public List<StudentAssigners> Students { get; set; }
 
 
     }

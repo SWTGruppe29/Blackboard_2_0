@@ -6,8 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blackboard_2_0.Models.Data
 {
-    public class BBContext : DbContext
+    public class BbContext : DbContext
     {
+        public BbContext(DbContextOptions<BbContext> options)
+            : base(options)
+        {
+        }
+
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Course> Courses { get; set; }
@@ -18,6 +23,8 @@ namespace Blackboard_2_0.Models.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Attends>()
+                .HasKey(x => new { x.StudentId, x.CourseId });
             
         }
     }

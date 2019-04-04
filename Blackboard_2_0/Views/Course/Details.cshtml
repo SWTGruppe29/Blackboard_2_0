@@ -21,13 +21,21 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Student.FirstName + " " + item.Student.LastName) 
+                @Html.DisplayFor(modelItem => item.Student.FirstName) 
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.Student.LastName)
             </td>
             <td>
                 @Html.DisplayFor(i => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(i => "au" + item.Student.AuId)
+                <text>au</text>
+                @for (var i = item.Student.Id.ToString().Length; i < 6; i++)
+                {
+                    <text>0</text>
+                }
+                <text>@item.Student.Id.ToString()</text>
             </td>
         </tr>
     }
@@ -49,47 +57,23 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Teacher.FirstName + " " + item.Teacher.LastName) 
+                @Html.DisplayFor(modelItem => item.Teacher.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.Teacher.LastName)
             </td>
             <td>
                 @Html.DisplayFor(i => item.Role)
             </td>
             <td>
-                @Html.DisplayFor(i => "au" + item.Teacher.AuId)
+                au
+                @for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
+                {
+                    <text>0</text>
+                }
+                @item.Teacher.Id.ToString()
             </td>
         </tr>
     }
     </tbody>
 </table>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Teachers
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Teachers)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Teacher.FirstName + " " + item.Teacher.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(i => item.Role)
-                </td>
-                <td>
-                    @Html.DisplayFor(i => "au" + item.Teacher.AuId)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<a class="btnStyle" asp-controller="Assignments" asp-action="Create">Add assignment</a>
-
-
-

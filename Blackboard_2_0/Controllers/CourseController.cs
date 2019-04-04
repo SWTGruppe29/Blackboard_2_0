@@ -38,6 +38,9 @@ namespace Blackboard_2_0.Controllers
             model.Teachers = _context.Teaches.Where(t => t.CourseId == id).Include(t => t.Teacher).ToList();
             model.CourseName = _context.Courses.Find(id).Name;
             
+
+            model.Assignments = _context.Assignments.Where(a => a.CourseId == id).ToList();
+            
             return View(model);
         }
 

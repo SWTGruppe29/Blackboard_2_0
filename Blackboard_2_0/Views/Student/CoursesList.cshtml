@@ -1,0 +1,14 @@
+﻿@model List<Blackboard_2_0.Models.Data.Attends>
+@{
+    ViewData["Title"] = "CoursesList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CoursesList</h1>
+
+@foreach (var course in Model)
+{
+    <a>@course.Course.Name</a>
+    <a>@course.Status</a> <br/>
+}
+

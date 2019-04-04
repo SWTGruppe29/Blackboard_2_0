@@ -9,5 +9,6 @@ namespace Blackboard_2_0.Models.Data
     {
         public int Id { get; set; }
         public string Role { get; set; }
+        public Student Student { get; set; }
     }
 }

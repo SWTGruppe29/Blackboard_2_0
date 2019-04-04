@@ -16,6 +16,8 @@ namespace Blackboard_2_0.Models.Data
 
         public List<Attends> Students { get; set; }
 
+        public Calendar Calendar { get; set; }
+
 
 
     }

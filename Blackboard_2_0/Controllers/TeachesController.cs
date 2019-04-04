@@ -21,17 +21,9 @@ namespace Blackboard_2_0.Controllers
         }
 
         // GET: Attends/Create
-        public IActionResult Create(int? id)
+        public IActionResult Create(int id)
         {
-            if (id == null)
-            {
-                ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId");
-                ViewData["AuId"] = new SelectList(_context.Teachers, "Id", "Id");
-                return View();
-            }
-
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId");
-            ViewData["AuId"] = new SelectList(_context.Teachers, "Id", "Id");
+            ViewData["AuId"] = new SelectList(_context.Teachers.Where(t => !t.Teaches.Exists(x => x.CourseId == id)), "Id", "Id");
             return View();
         }
 
@@ -40,10 +32,11 @@ namespace Blackboard_2_0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AuId,Role,CourseId")] Teaches teaches)
+        public async Task<IActionResult> Create(int id, [Bind("AuId,Role,CourseId")] Teaches teaches)
         {
             if (ModelState.IsValid)
             {
+                teaches.CourseId = id;
                 _context.Add(teaches);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Course", teaches.CourseId);

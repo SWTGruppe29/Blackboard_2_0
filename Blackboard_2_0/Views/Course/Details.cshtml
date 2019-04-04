@@ -78,6 +78,6 @@
     </tbody>
 </table>
 
-<a asp-controller="Course" asp-action="Index">Back to Course</a>
-<a asp-action="Create" asp-controller="Attends">Enroll a student</a>
-<a asp-action="Create" asp-controller="Teaches">Add a teacher</a>
+<a asp-controller="Course" asp-action="Index">Back to Course</a> | 
+<a asp-action="Create" asp-controller="Attends" asp-route-id="@ViewContext.RouteData.Values["id"]">Enroll a student</a> | 
+<a asp-action="Create" asp-controller="Teaches" asp-route-id="@ViewContext.RouteData.Values["id"]">Add a teacher</a>

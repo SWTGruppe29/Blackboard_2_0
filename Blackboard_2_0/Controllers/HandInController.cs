@@ -76,7 +76,26 @@ namespace Blackboard_2_0.Controllers
 
         public IActionResult Grade(HandIn handIn)
         {
-            return View();
+            GradeViewModel model = new GradeViewModel();
+            HandIn hi = _context.HandIns
+                .Where(h => h.AssignersId == handIn.AssignersId & h.AssignmentId == handIn.AssignmentId)
+                .Include(h => h.Assignment)
+                .First();
+            model.AssignmentId = hi.AssignmentId;
+            model.GraderSelectList = new SelectList(_context.Teachers.Where(t => t.Teaches.Exists(x => x.CourseId == hi.Assignment.CourseId)),"Id","Id");  
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Grade([Bind("HandIn.GraderId,HandIn.Grade")]GradeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.HandIns.Update(model.HandIn);
+                return RedirectToAction("ViewHandInsForAssignment", new {id = model.AssignmentId});
+            }
+            return View(model);
         }
     }
 }

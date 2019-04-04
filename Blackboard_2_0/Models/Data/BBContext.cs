@@ -83,6 +83,7 @@ namespace Blackboard_2_0.Models.Data
                 .HasForeignKey(b => b.ContentAreaId);
 
 
+
         }
     }
 }

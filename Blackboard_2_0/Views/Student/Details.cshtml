@@ -14,7 +14,10 @@
             @Html.DisplayNameFor(model => model.Student.Id)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Student.Id)
+            <text>au</text>@for (var i = Model.Student.Id.ToString().Length; i < 6; i++)
+                           {
+                               <text>0</text>
+                           }<text>@Model.Student.Id.ToString()</text>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Student.FirstName)
@@ -47,7 +50,9 @@
     @foreach (var item in Model.Attends) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Course.Name)
+                <a asp-action="Details" asp-controller="Course" asp-route-id="@item.CourseId">
+                    @Html.DisplayFor(modelItem => item.Course.Name)
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)

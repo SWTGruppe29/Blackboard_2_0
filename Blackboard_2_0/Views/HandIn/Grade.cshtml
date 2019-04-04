@@ -1,4 +1,4 @@
-﻿@model Blackboard_2_0.Models.Data.HandIn
+﻿@model Blackboard_2_0.Models.Data.GradeViewModel
 
 @{
     ViewData["Title"] = "Grade";
@@ -13,22 +13,24 @@
     <div class="col-md-4">
         <form asp-action="Grade">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="AssignmentId" />
             <div class="form-group">
-                <label asp-for="Grade" class="control-label"></label>
-                <input asp-for="Grade" class="form-control" />
-                <span asp-validation-for="Grade" class="text-danger"></span>
+                <select class="form-control" id="Grade" name="Grade" asp-for="HandIn.Grade">
+                    <option>Select Grade</option> 
+                    <option>-3</option> 
+                    <option>00</option>
+                    <option>02</option>
+                    <option>4</option>
+                    <option>7</option>
+                    <option>10</option>
+                    <option>12</option>
+                </select>
             </div>
-            <input type="hidden" asp-for="AssignersId" />
+            <input type="hidden" asp-for="HandIn.AssignmentId"/>
+            <input type="hidden" asp-for="HandIn.AssignersId"/>
             <div class="form-group">
-                <label asp-for="GraderId" class="control-label"></label>
-                <select asp-for="GraderId" class="form-control" asp-items="ViewBag.GraderId"></select>
-                <span asp-validation-for="GraderId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Text" class="control-label"></label>
-                <input asp-for="Text" class="form-control" />
-                <span asp-validation-for="Text" class="text-danger"></span>
+                <label asp-for="HandIn.GraderId" class="control-label"></label>
+                <select asp-for="HandIn.GraderId" class="form-control" asp-items="@Model.GraderSelectList"></select>
+                <span asp-validation-for="HandIn.GraderId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

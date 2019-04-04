@@ -4,12 +4,12 @@
 // Write your JavaScript code.
 
 
-var header = document.getElementsByClassName("navbar-nav");
-var btns = header.getElementsByClassName("nav-item");
-for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName("active");
-        current[0].className = current[0].className.replace(" active", "");
-        this.className += " active";
+$(document).ready(function () {
+    var url = window.location;
+    $('#active-nav').find('.active').removeClass('active');
+    $('#active-nav li a').each(function () {
+        if (this.href == url) {
+            $(this).parent().addClass('active');
+        }
     });
-}
+});

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Blackboard_2_0.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,22 +9,22 @@ using Blackboard_2_0.Models.Data;
 
 namespace Blackboard_2_0.Controllers
 {
-    public class CourseController : Controller
+    public class AssignersController : Controller
     {
         private readonly BbContext _context;
 
-        public CourseController(BbContext context)
+        public AssignersController(BbContext context)
         {
             _context = context;
         }
 
-        // GET: Course
+        // GET: Assigners
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Courses.ToListAsync());
+            return View(await _context.Assignerses.ToListAsync());
         }
 
-        // GET: Course/Details/5
+        // GET: Assigners/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,40 +32,39 @@ namespace Blackboard_2_0.Controllers
                 return NotFound();
             }
 
-            CourseViewModel model = new CourseViewModel();
-            model.Students = _context.Attends.Where(a => a.CourseId == id).Include(a => a.Student).ToList();
-            model.Teachers = _context.Teaches.Where(t => t.CourseId == id).Include(t => t.Teacher).ToList();
-            model.CourseName = _context.Courses.Find(id).Name;
-            
+            var assigners = await _context.Assignerses
+                .FirstOrDefaultAsync(m => m.AssignersId == id);
+            if (assigners == null)
+            {
+                return NotFound();
+            }
 
-            model.Assignments = _context.Assignments.Where(a => a.CourseId == id).ToList();
-                
-            return View(model);
+            return View(assigners);
         }
 
-        // GET: Course/Create
+        // GET: Assigners/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Course/Create
+        // POST: Assigners/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourseId,Name")] Course course)
+        public async Task<IActionResult> Create([Bind("AssignersId")] Assigners assigners)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(course);
+                _context.Add(assigners);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(course);
+            return View(assigners);
         }
 
-        // GET: Course/Edit/5
+        // GET: Assigners/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +72,22 @@ namespace Blackboard_2_0.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses.FindAsync(id);
-            if (course == null)
+            var assigners = await _context.Assignerses.FindAsync(id);
+            if (assigners == null)
             {
                 return NotFound();
             }
-            return View(course);
+            return View(assigners);
         }
 
-        // POST: Course/Edit/5
+        // POST: Assigners/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CourseId,Name")] Course course)
+        public async Task<IActionResult> Edit(int id, [Bind("AssignersId")] Assigners assigners)
         {
-            if (id != course.CourseId)
+            if (id != assigners.AssignersId)
             {
                 return NotFound();
             }
@@ -98,12 +96,12 @@ namespace Blackboard_2_0.Controllers
             {
                 try
                 {
-                    _context.Update(course);
+                    _context.Update(assigners);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseExists(course.CourseId))
+                    if (!AssignersExists(assigners.AssignersId))
                     {
                         return NotFound();
                     }
@@ -114,12 +112,41 @@ namespace Blackboard_2_0.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(course);
+            return View(assigners);
         }
 
-        private bool CourseExists(int id)
+        // GET: Assigners/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            return _context.Courses.Any(e => e.CourseId == id);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var assigners = await _context.Assignerses
+                .FirstOrDefaultAsync(m => m.AssignersId == id);
+            if (assigners == null)
+            {
+                return NotFound();
+            }
+
+            return View(assigners);
+        }
+
+        // POST: Assigners/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var assigners = await _context.Assignerses.FindAsync(id);
+            _context.Assignerses.Remove(assigners);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool AssignersExists(int id)
+        {
+            return _context.Assignerses.Any(e => e.AssignersId == id);
         }
     }
 }

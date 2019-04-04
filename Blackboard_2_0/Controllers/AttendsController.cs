@@ -26,12 +26,12 @@ namespace Blackboard_2_0.Controllers
             if (id == null)
             {
                 ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId");
-                ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
+                ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id");
                 return View();
             }
            
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId");
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
+            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id");
             return View();
         }
 
@@ -51,7 +51,7 @@ namespace Blackboard_2_0.Controllers
             }
 
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId", attends.CourseId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", attends.StudentId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", attends.StudentId);
             return View(attends);
         }
     }

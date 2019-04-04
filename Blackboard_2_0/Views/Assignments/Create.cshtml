@@ -1,4 +1,4 @@
-﻿@model Blackboard_2_0.Models.Data.Attends
+﻿@model Blackboard_2_0.Models.Data.Assignment
 
 @{
     ViewData["Title"] = "Create";
@@ -7,19 +7,15 @@
 
 <h1>Create</h1>
 
-<h4>Attends</h4>
+<h4>Assignment</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="StudentId" class="control-label"></label>
-                <select asp-for="StudentId" class ="form-control" asp-items="ViewBag.StudentId"></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="CourseId" class="control-label"></label>
-                <select asp-for="CourseId"  class ="form-control" asp-items="ViewBag.CourseId"></select>
+                <select asp-for="CourseId" class ="form-control" asp-items="ViewBag.CourseId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -29,7 +25,7 @@
 </div>
 
 <div>
-    <a asp-action="Index" asp-controller="Course">Back to course</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

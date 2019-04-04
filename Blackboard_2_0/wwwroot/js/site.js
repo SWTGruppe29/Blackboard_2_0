@@ -8,8 +8,10 @@
 $(document).ready(function () {
     var url = window.location +'';
     var res = url.split("/");
+    
+    var previousUrl = document.referrer.split("/");
 
-    $('#active-nav').find('.active').removeClass('active');
+
 
     $('#active-nav li a').each(function () {
         var str = this.href.split("/");

@@ -36,9 +36,13 @@ namespace Blackboard_2_0.Controllers
 
             TeachersViewModel model = new TeachersViewModel();
             model.Courses = _context.Teaches.Where(t => t.AuId == id).Include(t => t.Course).ToList();
-            model.HandIns = _context.HandIns.Where(h => h.GraderId == id).Include(h=>h.Assignment).ToList();
+            model.HandIns = _context.HandIns.Where(h => h.GraderId == id).ToList();
+            model.Teacher = await _context.Teachers.FirstOrDefaultAsync(t => t.Id == id);
 
-            
+            if (model.Teacher.Id != id)
+            {
+                return NotFound();
+            }
 
             return View(model);
         }

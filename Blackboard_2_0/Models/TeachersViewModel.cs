@@ -14,6 +14,8 @@ namespace Blackboard_2_0.Models
             HandIns = new List<HandIn>();
         }
 
+        public Teacher Teacher { get; set; }
+
         public List<Teaches> Courses { get; set; }
         public List<HandIn> HandIns { get; set; }
     }

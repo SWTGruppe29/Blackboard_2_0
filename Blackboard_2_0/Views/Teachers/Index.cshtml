@@ -35,7 +35,12 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AuId.Id)
+                
+                
+                <text>au</text>@for (var i = item.Id.ToString().Length; i < 6; i++){
+                    <text>0</text>
+                }@item.Id
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)

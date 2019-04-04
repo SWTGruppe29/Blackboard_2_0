@@ -67,8 +67,8 @@ namespace Blackboard_2_0.Models.Data
 
 
             modelBuilder.Entity<ContentArea>()
-                .HasKey(x => x.ContentAreaId)
-                
+                .HasKey(x => x.ContentAreaId);
+
 
 
 

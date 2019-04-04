@@ -27,7 +27,8 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Course</a>
+    <a asp-action="Create" asp-controller="Attends" asp-route-id="@Model.CourseId">Enroll student</a>
 </div>
 
 @section Scripts {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blackboard_2_0.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -32,14 +33,11 @@ namespace Blackboard_2_0.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses
-                .FirstOrDefaultAsync(m => m.CourseId == id);
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            return View(course);
+            CourseViewModel model = new CourseViewModel();
+            model.Students = _context.Attends.Where(a => a.CourseId == id).Include(a => a.Student).ToList();
+            model.Teachers = _context.Teaches.Where(t => t.CourseId == id).Include(t => t.Teacher).ToList();
+            
+            return View(model);
         }
 
         // GET: Course/Create

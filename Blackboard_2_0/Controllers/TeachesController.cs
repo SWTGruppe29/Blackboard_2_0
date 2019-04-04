@@ -24,6 +24,7 @@ namespace Blackboard_2_0.Controllers
         public IActionResult Create(int id)
         {
             ViewData["AuId"] = new SelectList(_context.Teachers.Where(t => !t.Teaches.Exists(x => x.CourseId == id)), "Id", "Id");
+
             return View();
         }
 
@@ -42,7 +43,6 @@ namespace Blackboard_2_0.Controllers
                 return RedirectToAction("Index", "Course", teaches.CourseId);
             }
 
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId", teaches.CourseId);
             ViewData["AuId"] = new SelectList(_context.Teachers, "Id", "Id", teaches.AuId);
             return View(teaches);
         }

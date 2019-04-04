@@ -4,14 +4,16 @@ using Blackboard_2_0.Models.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blackboard_2_0.Migrations
 {
     [DbContext(typeof(BbContext))]
-    partial class BbContextModelSnapshot : ModelSnapshot
+    [Migration("20190404105219_AuIdTeacher")]
+    partial class AuIdTeacher
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,8 +228,6 @@ namespace Blackboard_2_0.Migrations
             modelBuilder.Entity("Blackboard_2_0.Models.Data.Teacher", b =>
                 {
                     b.Property<int>("Id");
-
-                    b.Property<DateTime>("Birthday");
 
                     b.Property<string>("FirstName");
 

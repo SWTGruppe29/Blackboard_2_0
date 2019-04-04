@@ -25,7 +25,51 @@ namespace Blackboard_2_0.Models.Data
         {
             modelBuilder.Entity<Attends>()
                 .HasKey(x => new { x.StudentId, x.CourseId });
-            
+
+            modelBuilder.Entity<Attends>()
+                .HasOne(a => a.Student)
+                .WithMany(s => s.Attends)
+                .HasForeignKey(a => a.StudentId);
+            modelBuilder.Entity<Attends>()
+                .HasOne(a => a.Course)
+                .WithMany(c => c.Students)
+                .HasForeignKey(a => a.CourseId);
+
+
+
+            modelBuilder.Entity<Teaches>()
+                .HasKey(x => new {x.AuId, x.CourseId});
+
+            modelBuilder.Entity<Teaches>()
+                .HasOne(t => t.Course)
+                .WithMany(c => c.Teachers)
+                .HasForeignKey(t => t.CourseId);
+            modelBuilder.Entity<Teaches>()
+                .HasOne(t => t.Teacher)
+                .WithMany(t => t.Teaches)
+                .HasForeignKey(t => t.AuId);
+
+
+            modelBuilder.Entity<StudentAssigners>()
+                .HasKey(x => new {x.StudentId, x.AssignersId});
+
+            modelBuilder.Entity<StudentAssigners>()
+                .HasOne(sa => sa.Student)
+                .WithMany(s => s.Assigners)
+                .HasForeignKey(sa => sa.StudentId);
+            modelBuilder.Entity<StudentAssigners>()
+                .HasOne(sa => sa.Assigners)
+                .WithMany(a => a.Students)
+                .HasForeignKey(sa => sa.AssignersId);
+
+            modelBuilder.Entity<HandIn>()
+                .HasKey(x => new {x.AssignersId, x.AssignmentId});
+
+
+
+
+
+
         }
     }
 }

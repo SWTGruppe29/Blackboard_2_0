@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blackboard_2_0.Models.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Blackboard_2_0.Models.Data;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Blackboard_2_0.Controllers
 {
-    public class AttendsController : Controller
+    public class TeachesController : Controller
     {
         private readonly BbContext _context;
-
-        public AttendsController(BbContext context)
-        {
-            _context = context;
-        }
-
 
         // GET: Attends/Create
         public IActionResult Create(int? id)
@@ -26,12 +20,12 @@ namespace Blackboard_2_0.Controllers
             if (id == null)
             {
                 ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId");
-                ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
+                ViewData["StudentId"] = new SelectList(_context.Teachers, "Id", "Id");
                 return View();
             }
-           
+
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId");
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
+            ViewData["StudentId"] = new SelectList(_context.Teachers, "Id", "Id");
             return View();
         }
 
@@ -47,11 +41,11 @@ namespace Blackboard_2_0.Controllers
                 attends.Status = "Active";
                 _context.Add(attends);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","Course",attends.CourseId);
+                return RedirectToAction("Index", "Course", attends.CourseId);
             }
 
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId", attends.CourseId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", attends.StudentId);
+            ViewData["StudentId"] = new SelectList(_context.Teachers, "Id", "Id", attends.StudentId);
             return View(attends);
         }
     }

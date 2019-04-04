@@ -136,10 +136,14 @@ namespace Blackboard_2_0.Controllers
             var teacher = await _context.Teachers
                 .Include(t => t.AuId)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+
             if (teacher == null)
             {
                 return NotFound();
             }
+
+            
 
             return View(teacher);
         }
@@ -150,7 +154,9 @@ namespace Blackboard_2_0.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var teacher = await _context.Teachers.FindAsync(id);
+            var auId = await _context.AuIds.FindAsync(id);
             _context.Teachers.Remove(teacher);
+            _context.AuIds.Remove(auId);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

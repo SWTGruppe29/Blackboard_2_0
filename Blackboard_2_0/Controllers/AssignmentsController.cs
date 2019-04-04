@@ -62,7 +62,7 @@ namespace Blackboard_2_0.Controllers
             {
                 _context.Add(assignment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Course", new{id = assignment.CourseId});
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId", assignment.CourseId);
             return View(assignment);
@@ -148,7 +148,7 @@ namespace Blackboard_2_0.Controllers
             var assignment = await _context.Assignments.FindAsync(id);
             _context.Assignments.Remove(assignment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Course", new { id = assignment.CourseId });
         }
 
         private bool AssignmentExists(int id)

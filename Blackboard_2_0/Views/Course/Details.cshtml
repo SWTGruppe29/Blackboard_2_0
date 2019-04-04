@@ -47,33 +47,36 @@
     <thead>
     <tr>
         <th>
-            Teachers
+            Assignments
+        </th>
+        <th>
+            Max assigners
+        </th>
+        <th>
+            Course id
         </th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Teachers)
+    @foreach (var item in Model.Assignments)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Teacher.FirstName)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(i => item.Teacher.LastName)
+                @Html.DisplayFor(i => item.MaxAssigners)
             </td>
             <td>
-                @Html.DisplayFor(i => item.Role)
+                @Html.DisplayFor(i => item.CourseId)
             </td>
             <td>
-                au
-                @for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
-                {
-                    <text>0</text>
-                }
-                @item.Teacher.Id.ToString()
+                <a asp-controller="Assignments" asp-action="Delete" asp-route-id="@item.AssignmentId">Delete</a>
             </td>
         </tr>
     }
     </tbody>
 </table>
+
+<a class="btnStyle" asp-controller="Assignments" asp-action="Create">Add assignment</a>

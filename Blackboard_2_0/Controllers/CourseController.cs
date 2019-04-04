@@ -36,6 +36,8 @@ namespace Blackboard_2_0.Controllers
             CourseViewModel model = new CourseViewModel();
             model.Students = _context.Attends.Where(a => a.CourseId == id).Include(a => a.Student).ToList();
             model.Teachers = _context.Teaches.Where(t => t.CourseId == id).Include(t => t.Teacher).ToList();
+
+            model.Assignments = _context.Assignments.Where(a => a.CourseId == id).ToList();
             
             return View(model);
         }

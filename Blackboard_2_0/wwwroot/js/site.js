@@ -4,11 +4,15 @@
 // Write your JavaScript code.
 
 
+
 $(document).ready(function () {
-    var url = window.location;
+    var url = window.location +'';
+    var res = url.split("/");
+    console.log(res[3]);
+    
     $('#active-nav').find('.active').removeClass('active');
     $('#active-nav li a').each(function () {
-        if (this.href == url) {
+        if (this.href == res[3] || this.href == "") {
             $(this).parent().addClass('active');
         }
     });

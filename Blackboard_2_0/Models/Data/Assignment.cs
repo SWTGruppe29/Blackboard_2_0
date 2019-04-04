@@ -7,6 +7,9 @@ namespace Blackboard_2_0.Models.Data
 {
     public class Assignment
     {
+        public int MaxAssigners { get; set; }
+        public string Name { get; set; }
+
         public int CourseId { get; set; }
         public Course Course { get; set; }
         public int AssignmentId { get; set; }

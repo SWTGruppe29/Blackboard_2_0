@@ -35,8 +35,6 @@ namespace Blackboard_2_0.Models.Data
                 .WithMany(c => c.Students)
                 .HasForeignKey(a => a.CourseId);
 
-
-
             modelBuilder.Entity<Teaches>()
                 .HasKey(x => new {x.AuId, x.CourseId});
 

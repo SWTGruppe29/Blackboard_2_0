@@ -1,0 +1,45 @@
+﻿@model Blackboard_2_0.Models.Data.HandInViewModel
+
+@{
+    ViewData["Title"] = "StudentHandIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>StudentHandIn</h1>
+
+<h4>HandIn</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="StudentHandIn">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @{
+                if (Model.IsSolo) //Single student assignment
+                {
+                    <div class="form-group">
+                        <label asp-for="Id" class="control-label">Student Id</label>
+                        <select asp-for="Id" class ="form-control" asp-items="@Model.Students"></select>
+                    </div>
+
+                    <div clas="form-group">
+                        <label asp-for="Text" class="control-label">HandIn text</label>
+                        <input asp-for="Text" class="form-control" />
+                        <span asp-validation-for="Text" class="text-danger"></span>
+                    </div>
+                }
+            }
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btnStyle" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Details" asp-controller="Course" asp-route-id="@Model.Id">Back to Course</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

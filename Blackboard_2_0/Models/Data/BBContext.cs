@@ -72,6 +72,8 @@ namespace Blackboard_2_0.Models.Data
 
             modelBuilder.Entity<HandIn>()
                 .HasKey(x => new {x.AssignersId, x.AssignmentId});
+            modelBuilder.Entity<HandIn>()
+                .Property(x => x.GraderId).IsRequired(false);
 
 
             modelBuilder.Entity<ContentArea>()

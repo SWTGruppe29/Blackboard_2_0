@@ -101,7 +101,7 @@
         {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                <a asp-controller="HandIn" asp-action="ViewHandInsForAssignment" asp-route-id="@item.AssignmentId" >@Html.DisplayFor(modelItem => item.Name)</a>
             </td>
             <td>
                 @Html.DisplayFor(i => item.MaxAssigners)
@@ -111,6 +111,19 @@
             </td>
             <td>
                 <a asp-controller="Assignments" asp-action="Delete" asp-route-id="@item.AssignmentId">Delete</a>
+            </td>
+            <td>
+                @{
+                    if (item.MaxAssigners == 1)
+                    {
+                        <a asp-controller="HandIn" asp-action="StudentHandIn" asp-route-id="@item.AssignmentId">Handin</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="HandIn"></a>
+                    }
+                }
+
             </td>
         </tr>
         }

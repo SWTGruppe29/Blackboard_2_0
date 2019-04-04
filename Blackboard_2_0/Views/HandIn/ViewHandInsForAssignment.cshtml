@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Blackboard_2_0.Models.Data.HandIn>
+
+@{
+    ViewData["Title"] = "ViewHandInsForAssignment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>HandIns for Assignment: @Model.First().Assignment.Name </h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assigners)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grader)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assigners.AssignersId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grader.Id)
+            </td>
+            <td>
+                <a asp-controller="HandIn" asp-action="Grade" asp-route-id="@item"></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

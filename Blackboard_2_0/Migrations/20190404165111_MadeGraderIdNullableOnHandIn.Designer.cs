@@ -4,14 +4,16 @@ using Blackboard_2_0.Models.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blackboard_2_0.Migrations
 {
     [DbContext(typeof(BbContext))]
-    partial class BbContextModelSnapshot : ModelSnapshot
+    [Migration("20190404165111_MadeGraderIdNullableOnHandIn")]
+    partial class MadeGraderIdNullableOnHandIn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -117,6 +117,21 @@ namespace Blackboard_2_0.Controllers
             return View(course);
         }
 
+        public async Task<IActionResult> Content(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Courses.FindAsync(id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+            return RedirectToAction("Index","CourseContents");
+        }
+
         private bool CourseExists(int id)
         {
             return _context.Courses.Any(e => e.CourseId == id);

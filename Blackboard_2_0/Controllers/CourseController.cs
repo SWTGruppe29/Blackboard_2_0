@@ -40,6 +40,8 @@ namespace Blackboard_2_0.Controllers
             
 
             model.Assignments = _context.Assignments.Where(a => a.CourseId == id).ToList();
+            //laves til at vise CourseContent I details, hvis dette ønskes.
+            model.CourseContents = _context.CourseContents.Where(c => c.CourseId == id).ToList();
                 
             return View(model);
         }

@@ -63,7 +63,7 @@ namespace Blackboard_2_0.Controllers
                 courseContent.CourseId = id;
                 _context.Add(courseContent);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details","Course",new{id=courseContent.CourseId});
+                return RedirectToAction("Details","Course",new{id = courseContent.CourseId});
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId", courseContent.CourseId);
             return View(courseContent);
@@ -149,7 +149,7 @@ namespace Blackboard_2_0.Controllers
             var courseContent = await _context.CourseContents.FindAsync(id);
             _context.CourseContents.Remove(courseContent);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details","Course",new{id = courseContent.CourseId});
         }
 
         private bool CourseContentExists(int id)

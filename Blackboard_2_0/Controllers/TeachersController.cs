@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blackboard_2_0.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -33,15 +34,13 @@ namespace Blackboard_2_0.Controllers
                 return NotFound();
             }
 
-            var teacher = await _context.Teachers
-                .Include(t => t.AuId)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (teacher == null)
-            {
-                return NotFound();
-            }
+            TeachersViewModel model = new TeachersViewModel();
+            model.Courses = _context.Teaches.Where(t => t.AuId == id).Include(t => t.Course).ToList();
+            model.HandIns = _context.HandIns.Where(h => h.GraderId == id).Include(h=>h.Assignment).ToList();
 
-            return View(teacher);
+            
+
+            return View(model);
         }
 
         // GET: Teachers/Create

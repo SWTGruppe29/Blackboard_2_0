@@ -9,19 +9,19 @@
 
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            Students
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                Students
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Students)
-    {
+        @foreach (var item in Model.Students)
+        {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Student.FirstName) 
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
             </td>
             <td>
                 @Html.DisplayFor(i => item.Student.LastName)
@@ -32,27 +32,27 @@
             <td>
                 <text>au</text>@for (var i = item.Student.Id.ToString().Length; i < 6; i++)
                 {
-                    <text>0</text>
+                <text>0</text>
                 }<text>@item.Student.Id.ToString()</text>
             </td>
         </tr>
-    }
+        }
     </tbody>
 </table>
 
 
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            Teachers
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                Teachers
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Teachers)
-    {
+        @foreach (var item in Model.Teachers)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Teacher.FirstName)
@@ -66,14 +66,54 @@
             <td>
                 <text>au</text>@for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
                 {
-                    <text>0</text>
+                <text>0</text>
                 }@item.Teacher.Id.ToString()
             </td>
         </tr>
-    }
+        }
     </tbody>
 </table>
 
-<a asp-controller="Course" asp-action="Index">Back to Course</a> | 
-<a asp-action="Create" asp-controller="Attends" asp-route-id="@ViewContext.RouteData.Values["id"]">Enroll a student</a> | 
-<a asp-action="Create" asp-controller="Teaches" asp-route-id="@ViewContext.RouteData.Values["id"]">Add a teacher</a>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Assignments
+            </th>
+            <th>
+                Max assigners
+            </th>
+            <th>
+                Course id
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Assignments)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.MaxAssigners)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.CourseId)
+            </td>
+            <td>
+                <a asp-controller="Assignments" asp-action="Delete" asp-route-id="@item.AssignmentId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btnStyle" asp-controller="Assignments" asp-action="Create">Add assignment</a>
+<a asp-controller="Course" asp-action="Index">Back to Course</a> |
+<a asp-action="Create" asp-controller="Attends" asp-route-id="@ViewContext.RouteData.Values[" id"]">Enroll a student</a> |
+<a asp-action="Create" asp-controller="Teaches" asp-route-id="@ViewContext.RouteData.Values[" id"]">Add a teacher</a>

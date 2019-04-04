@@ -5,11 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Teachers</h1>
+<div class="top-headline">
+    <h1>Teachers</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <p>
+        <a class="btnStyle" asp-action="Create">Create New</a>
+    </p>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -32,7 +35,12 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AuId.Id)
+                
+                
+                <text>au</text>@for (var i = item.Id.ToString().Length; i < 6; i++){
+                    <text>0</text>
+                }@item.Id
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,14 +10,12 @@ namespace Blackboard_2_0.Models.Data
 {
     public class Calendar
     {
+        [Key]
         public int  EventId { get; set; }
         
         [ForeignKey("Course")]
         public int CourseId { get; set; }
         public Course Course { get; set; }
-
-        [ForeignKey("Course")]
-        public string CourseName { get; set; }
 
         public DateTime EventDate { get; set; }
         public string Type { get; set; }

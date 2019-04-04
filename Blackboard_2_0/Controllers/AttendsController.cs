@@ -40,7 +40,7 @@ namespace Blackboard_2_0.Controllers
                 attends.Status = "Active";
                 _context.Add(attends);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","Course",attends.CourseId);
+                return RedirectToAction("Details","Course",new{id =attends.CourseId});
             }
 
             ViewData["StudentId"] = new SelectList(_context.Students, "Id", "Id", attends.StudentId);

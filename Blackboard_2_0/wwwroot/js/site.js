@@ -8,11 +8,12 @@
 $(document).ready(function () {
     var url = window.location +'';
     var res = url.split("/");
-    console.log(res[3]);
-    
+
     $('#active-nav').find('.active').removeClass('active');
+
     $('#active-nav li a').each(function () {
-        if (this.href == res[3] || this.href == "") {
+        var str = this.href.split("/");
+        if (str[3] == res[3] || this.href == "") {
             $(this).parent().addClass('active');
         }
     });

@@ -52,9 +52,19 @@ for details on configuring this project to bundle and minify static web assets. 
     padding: 10px 30px !important;
     text-align: center;
 }
-.active, .btn:hover {
-    border-bottom: 2px solid #02af02;
+.nav-item {
+    border-bottom: 2px solid transparent;
 }
+
+.active {
+    border-bottom: 2px solid #02af02;
+    color: white !important;
+}
+
+.active a {
+    color: white !important;
+}
+
 
 .navbar-nav {
     justify-content: flex-end ! important;
@@ -74,7 +84,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .text-dark {
-    color: #ffffff !important;
+    color: #cacaca !important;
 }
 
 

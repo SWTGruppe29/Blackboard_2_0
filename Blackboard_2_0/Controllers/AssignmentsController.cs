@@ -45,7 +45,7 @@ namespace Blackboard_2_0.Controllers
         }
 
         // GET: Assignments/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId");
             return View();
@@ -56,10 +56,11 @@ namespace Blackboard_2_0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaxAssigners,Name,CourseId,AssignmentId")] Assignment assignment)
+        public async Task<IActionResult> Create(int id, [Bind("MaxAssigners,Name,CourseId,AssignmentId")] Assignment assignment)
         {
             if (ModelState.IsValid)
             {
+                assignment.CourseId = id;
                 _context.Add(assignment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Course", new{id = assignment.CourseId});

@@ -64,6 +64,9 @@ namespace Blackboard_2_0.Models.Data
                 .HasKey(x => new {x.AssignersId, x.AssignmentId});
 
 
+            modelBuilder.Entity<ContentArea>()
+                .HasKey(x => x.ContentAreaId);
+
 
 
 

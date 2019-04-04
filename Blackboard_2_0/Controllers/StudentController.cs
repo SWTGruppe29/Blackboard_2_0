@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blackboard_2_0.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -32,14 +33,19 @@ namespace Blackboard_2_0.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (student == null)
+            var viewModel = new StudentDetailsViewModel()
+            {
+                Student = await _context.Students.FirstOrDefaultAsync(m => m.Id == id),
+                Attends = _context.Attends.Where(s => s.StudentId == id).Include(c=>c.Course).ToList()
+            };
+           
+
+            if (viewModel.Student.Id!=id)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(viewModel);
         }
 
         // GET: Student/Create
@@ -146,7 +152,9 @@ namespace Blackboard_2_0.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var student = await _context.Students.FindAsync(id);
+            var auId = await _context.AuIds.FindAsync(id);
             _context.Students.Remove(student);
+            _context.AuIds.Remove(auId);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

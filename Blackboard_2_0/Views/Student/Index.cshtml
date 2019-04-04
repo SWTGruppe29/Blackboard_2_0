@@ -29,12 +29,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <text>au</text>
-            @for (var i = item.Id.ToString().Length; i < 6; i++)
+            <text>au</text>@for (var i = item.Id.ToString().Length; i < 6; i++)
             {
                 <text>0</text>
-            }
-            <text>@item.Id.ToString()</text>
+            }<text>@item.Id.ToString()</text>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)

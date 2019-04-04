@@ -1,10 +1,55 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.navbar-nav > li {
+    text-align: center !important;
+}
+
+.navbar-brand {
+    display: block; 
+    position: absolute;
+    left: 2%;
+    top: 20%;
+}
+.navbar-brand img {
+    width: 13vw;
+}
+
+.nav-link {
+    padding: 10px 30px !important;
+    text-align: center;
+}
+.active, .btn:hover {
+    border-bottom: 2px solid #02af02;
+}
+
+.navbar-nav {
+    justify-content: flex-end ! important;
+}
+
+.nav-item:hover {
+    color: white !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+    color: white !important;
+}
+
+.navbar {
+    background-color: #13372c !important;
+    padding: 1.5rem 0rem 0rem 1rem !important;
+}
+
+.text-dark {
+    color: #ffffff !important;
+}
+
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  color: white;
 }
 
 /* Sticky footer styles

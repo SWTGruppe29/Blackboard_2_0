@@ -15,6 +15,7 @@ namespace Blackboard_2_0.Models.Data
         public AuId AuId { get; set; }
         public string  FirstName { get; set; }
         public string  LastName { get; set; }
+        public DateTime Birthday { get; set; }
 
         public List<Teaches> Teaches { get; set; }
 

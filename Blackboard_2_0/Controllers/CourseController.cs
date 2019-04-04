@@ -40,7 +40,7 @@ namespace Blackboard_2_0.Controllers
             
 
             model.Assignments = _context.Assignments.Where(a => a.CourseId == id).ToList();
-            
+                
             return View(model);
         }
 

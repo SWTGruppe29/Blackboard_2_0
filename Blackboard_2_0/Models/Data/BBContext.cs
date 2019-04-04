@@ -20,6 +20,16 @@ namespace Blackboard_2_0.Models.Data
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Attends> Attends { get; set; }
 
+        public DbSet<ContentArea> ContentAreas { get; set; }
+        public DbSet<CourseContent> CourseContents { get; set; }
+        public DbSet<Calendar> Calendars { get; set; }
+        public DbSet<Assigners> Assignerses { get; set; }
+        public DbSet<AuId> AuIds { get; set; }
+        public DbSet<ContentLink> ContentLinks { get; set; }
+        public DbSet<Folder> Folders { get; set; }
+        public DbSet<HandIn> HandIns { get; set; }
+        public DbSet<StudentAssigners> StudentAssignerses { get; set; }
+     
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

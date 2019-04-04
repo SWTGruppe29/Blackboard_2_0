@@ -57,6 +57,13 @@ namespace Blackboard_2_0.Controllers
         {
             if (ModelState.IsValid)
             {
+                var newStudent = new AuId()
+                {
+                    Role = "Student"
+                };
+                _context.Add(newStudent);
+
+                student.Id = newStudent.Id;
                 _context.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -13,7 +13,7 @@ namespace Blackboard_2_0.Models.Data
         public CourseContent CourseContent { get; set; }
         public int CourseContentId { get; set; }
         public string TextBlock { get; set; }
-
+        public List<ContentLink> ContentLinks { get; set; }
 
 
     }

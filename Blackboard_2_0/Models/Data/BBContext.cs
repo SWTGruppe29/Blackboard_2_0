@@ -67,10 +67,12 @@ namespace Blackboard_2_0.Models.Data
 
 
             modelBuilder.Entity<ContentArea>()
-                .HasKey(x => x.ContentAreaId)
-                
+                .HasKey(x => x.ContentAreaId);
 
-
+            modelBuilder.Entity<ContentArea>()
+                .HasOne(b => b.CourseContent)
+                .WithMany(a => a.ContentAreas)
+                .HasForeignKey(b => b.ContentAreaId);
 
 
         }

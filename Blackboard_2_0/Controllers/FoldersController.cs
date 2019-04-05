@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blackboard_2_0.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -33,15 +34,16 @@ namespace Blackboard_2_0.Controllers
                 return NotFound();
             }
 
-            var folder = await _context.Folders
-                .Include(f => f.CourseContent)
-                .FirstOrDefaultAsync(m => m.FolderId == id);
+            Folder folder = _context.Folders.Find((int)id);
             if (folder == null)
             {
                 return NotFound();
             }
-
-            return View(folder);
+            FolderViewModel model = new FolderViewModel();
+            model.Folders = await _context.Folders.Where(f => f.CourseContentId == folder.CourseContentId).ToListAsync();
+            model.ContentAreas = await _context.ContentAreas.Where(c => c.CourseContentId == folder.CourseContentId & c.FolderId == folder.FolderId).ToListAsync();
+            model.CourseContentId = folder.CourseContentId;
+            return View(model);
         }
 
         // GET: Folders/Create
@@ -64,7 +66,7 @@ namespace Blackboard_2_0.Controllers
                 _context.Add(folder);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("");
+                return RedirectToAction("Details", "CourseContents",new {id = folder.CourseContentId});
             }
             ViewData["CourseContentId"] = new SelectList(_context.CourseContents, "CourseContentId", "CourseContentId", folder.CourseContentId);
             return View(folder);

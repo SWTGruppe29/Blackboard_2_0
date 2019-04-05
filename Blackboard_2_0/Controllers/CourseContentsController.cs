@@ -54,9 +54,6 @@ namespace Blackboard_2_0.Controllers
                 return NotFound();
             }
 
-            ViewData["ContentAreaId"] = new SelectList(_context.CourseContents, "CourseContentId", "CourseContentId", model.ContentArea.ContentAreaId);
-            ViewData["FolderId"] = new SelectList(_context.Folders, "FolderId", "FolderId", model.ContentArea.FolderId);
-
             return View(model);
         }
 

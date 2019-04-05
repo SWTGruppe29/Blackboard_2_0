@@ -179,9 +179,13 @@ namespace Blackboard_2_0.Migrations
 
                     b.Property<string>("FolderName");
 
+                    b.Property<int>("ParentFolderId");
+
                     b.HasKey("FolderId");
 
                     b.HasIndex("CourseContentId");
+
+                    b.HasIndex("ParentFolderId");
 
                     b.ToTable("Folders");
                 });
@@ -326,6 +330,11 @@ namespace Blackboard_2_0.Migrations
                     b.HasOne("Blackboard_2_0.Models.Data.CourseContent", "CourseContent")
                         .WithMany("Folders")
                         .HasForeignKey("CourseContentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Blackboard_2_0.Models.Data.Folder", "ParentFolder")
+                        .WithMany()
+                        .HasForeignKey("ParentFolderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

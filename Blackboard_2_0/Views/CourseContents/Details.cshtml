@@ -10,51 +10,32 @@
 <div class="top-headline">
     <h1>@Model.CourseContent.Name</h1>
     <p>
-        <a class="btnStyle" asp-action="Create">Create content area</a>
+        <a class="btnStyle" asp-action="Create" asp-controller="ContentAreas" asp-route-id="@ViewContext.RouteData.Values["id"]" >Create content area</a>
         <a class="btnStyle" asp-controller="Folders" asp-action="Create" asp-route-id="@ViewContext.RouteData.Values["id"]">Create folder</a>
     </p>
 </div>
 
 
 <div>
-    <h5>@Model.CourseContent.Course.Name</h5>
-    <hr />
+
+    <h5>Content:</h5>
 
     @foreach (var item in Model.ContentAreas)
     {
-        <p>@item.CourseContentId</p>
         <p>@item.TextBlock</p>
     }
+        
 
+    <hr/>
+    
+    <h5>Folders:</h5>
+    @foreach (var folder in Model.Folders)
+    {
+        <p><a asp-controller="Folders" asp-action="Details" asp-route-id="@folder.FolderId">@folder.FolderName</a></p>
+    }
 
-</div>
-
-<h1>Create</h1>
-
-<h4>ContentArea</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-controller="ContentAreas" asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="@Model.ContentArea.FolderId" class="control-label"></label>
-                <select asp-for="@Model.ContentArea.FolderId" class="form-control" asp-items="ViewBag.FolderId"></select>
-            </div>
-            <div class="form-group">
-                <input asp-for="@Model.ContentArea.CourseContentId" hidden="hidden" value="@ViewContext.RouteData.Values["id"]" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.ContentArea.TextBlock" class="control-label"></label>
-                <input asp-for="@Model.ContentArea.TextBlock" class="form-control" />
-                <span asp-validation-for="@Model.ContentArea.TextBlock" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+    <hr/>
+    
 </div>
 
 <div>

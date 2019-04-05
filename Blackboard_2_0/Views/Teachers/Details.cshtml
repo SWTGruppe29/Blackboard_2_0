@@ -39,9 +39,14 @@
     <thead>
         <tr>
             <th>
-                Courses
+                Course Id
             </th>
-            <th></th>
+            <th>
+                Course Name
+            </th>
+            <th>
+                Role
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -52,7 +57,9 @@
                     @Html.DisplayFor(modelItem => item.Course.CourseId)
                 </td>
                 <td>
-                    @Html.DisplayFor(i => item.Course.Name)
+                    <a asp-controller="Course" asp-action="Details" asp-route-id="@item.CourseId">
+                        @Html.DisplayFor(i => item.Course.Name)
+                    </a>
                 </td>
                 <td>
                     @Html.DisplayFor(i => item.Role)
@@ -77,6 +84,7 @@
     {
         <tr>
             <td>
+                @* Lav her et anker til handin details *@
                 @Html.DisplayFor(modelItem => item.AssignmentId)
             </td>
             <td>

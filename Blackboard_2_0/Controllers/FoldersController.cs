@@ -63,7 +63,8 @@ namespace Blackboard_2_0.Controllers
                 folder.CourseContentId = id;
                 _context.Add(folder);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return RedirectToAction("");
             }
             ViewData["CourseContentId"] = new SelectList(_context.CourseContents, "CourseContentId", "CourseContentId", folder.CourseContentId);
             return View(folder);

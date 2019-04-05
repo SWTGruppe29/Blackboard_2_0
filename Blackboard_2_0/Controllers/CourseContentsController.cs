@@ -76,6 +76,7 @@ namespace Blackboard_2_0.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 courseContent.CourseId = id;
                 _context.Add(courseContent);
                 await _context.SaveChangesAsync();

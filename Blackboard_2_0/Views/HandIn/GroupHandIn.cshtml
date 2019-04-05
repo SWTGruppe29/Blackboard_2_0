@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "GroupHandIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GroupHandIn</h1>
+
+<a class="btnStyle" asp-controller="HandIn" asp-action="CreateGroup" asp-route-id="@ViewContext.RouteData.Values["id"]">Create group</a>
+
+@*<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Teachers
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Teachers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.Teacher.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.Role)
+            </td>
+            <td>
+                <text>au</text>@for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
+                               {
+                                   <text>0</text>
+                               }@item.Teacher.Id.ToString()
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>*@
+

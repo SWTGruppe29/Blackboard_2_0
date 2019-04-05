@@ -4,14 +4,16 @@ using Blackboard_2_0.Models.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blackboard_2_0.Migrations
 {
     [DbContext(typeof(BbContext))]
-    partial class BbContextModelSnapshot : ModelSnapshot
+    [Migration("20190405160333_AddedNameToAssigners")]
+    partial class AddedNameToAssigners
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,13 +27,9 @@ namespace Blackboard_2_0.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AssignmentId");
-
                     b.Property<string>("Name");
 
                     b.HasKey("AssignersId");
-
-                    b.HasIndex("AssignmentId");
 
                     b.ToTable("Assignerses");
                 });
@@ -267,13 +265,6 @@ namespace Blackboard_2_0.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Teaches");
-                });
-
-            modelBuilder.Entity("Blackboard_2_0.Models.Data.Assigners", b =>
-                {
-                    b.HasOne("Blackboard_2_0.Models.Data.Assignment", "Assignment")
-                        .WithMany("Assigners")
-                        .HasForeignKey("AssignmentId");
                 });
 
             modelBuilder.Entity("Blackboard_2_0.Models.Data.Assignment", b =>

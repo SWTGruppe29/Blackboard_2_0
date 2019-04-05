@@ -107,5 +107,24 @@ namespace Blackboard_2_0.Controllers
             }
             return View(model);
         }
+
+
+        public IActionResult GroupHandIn(int id)
+        {
+            //var groups=_context.Assignerses.Where(c=>c.)
+
+            return View();
+        }
+
+        public IActionResult CreateGroup(int id)
+        {
+            Assigners group = new Assigners();
+            //group.Name
+            _context.Assignerses.Add(group);
+            _context.SaveChanges();
+            return RedirectToAction("GroupHandIn", id);
+        }
+
+
     }
 }

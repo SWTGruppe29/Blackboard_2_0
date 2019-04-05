@@ -68,12 +68,10 @@
                                     @Html.DisplayFor(i => item.Status)
                                 </td>
                                 <td>
-                                    <text>au</text>
-                                    @for (var i = item.Student.Id.ToString().Length; i < 6; i++)
+                                    <text>au</text>@for (var i = item.Student.Id.ToString().Length; i < 6; i++)
                                     {
                                         <text>0</text>
-                                    }
-                                    <text>@item.Student.Id.ToString()</text>
+                                    }<text>@item.Student.Id.ToString()</text>
                                 </td>
                             </tr>
                         }
@@ -108,12 +106,10 @@
                                     @Html.DisplayFor(i => item.Role)
                                 </td>
                                 <td>
-                                    <text>au</text>
-                                    @for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
+                                    <text>au</text>@for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
                                     {
                                         <text>0</text>
-                                    }
-                                    @item.Teacher.Id.ToString()
+                                    }@item.Teacher.Id.ToString()
                                 </td>
                             </tr>
                         }
@@ -163,7 +159,7 @@
                     }
                     else
                     {
-                        <a asp-controller="HandIn"></a>
+                        <a asp-controller="HandIn" asp-action="GroupHandIn" asp-route-id="@item.AssignmentId">Handin</a>
                     }
                 }
 

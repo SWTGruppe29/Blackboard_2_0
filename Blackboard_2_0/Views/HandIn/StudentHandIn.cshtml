@@ -11,16 +11,16 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="StudentHandIn">
+        <form asp-action="StudentHandIn" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @{
                 if (Model.IsSolo) //Single student assignment
                 {
                     <div class="form-group">
-                        <label asp-for="Id" class="control-label">Student Id</label>
-                        <select asp-for="Id" class ="form-control" asp-items="@Model.Students"></select>
+                        <label asp-for="StudentId" class="control-label">Student Id</label>
+                        <select asp-for="StudentId" class ="form-control" asp-items="@Model.Students"></select>
                     </div>
-
+                    <input type="hidden" asp-for="CourseId"/>
                     <div clas="form-group">
                         <label asp-for="Text" class="control-label">HandIn text</label>
                         <input asp-for="Text" class="form-control" />
@@ -37,7 +37,7 @@
 </div>
 
 <div>
-    <a asp-action="Details" asp-controller="Course" asp-route-id="@Model.Id">Back to Course</a>
+    <a asp-action="Details" asp-controller="Course" asp-route-id="@Model.CourseId">Back to Course</a>
 </div>
 
 @section Scripts {

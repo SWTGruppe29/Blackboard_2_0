@@ -14,11 +14,10 @@
         <form asp-action="Grade">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <select class="form-control" id="Grade" name="Grade" asp-for="HandIn.Grade">
-                    <option>Select Grade</option> 
+                <select class="form-control" asp-for="HandIn.Grade">
                     <option>-3</option> 
-                    <option>00</option>
-                    <option>02</option>
+                    <option>0</option>
+                    <option>2</option>
                     <option>4</option>
                     <option>7</option>
                     <option>10</option>
@@ -27,6 +26,7 @@
             </div>
             <input type="hidden" asp-for="HandIn.AssignmentId"/>
             <input type="hidden" asp-for="HandIn.AssignersId"/>
+            <input type="hidden" asp-for="HandIn.Text"/>
             <div class="form-group">
                 <label asp-for="HandIn.GraderId" class="control-label"></label>
                 <select asp-for="HandIn.GraderId" class="form-control" asp-items="@Model.GraderSelectList"></select>
@@ -40,7 +40,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ViewHandInsForAssignment" asp-route-id="@Model.HandIn.AssignmentId">Back to List</a>
 </div>
 
 @section Scripts {

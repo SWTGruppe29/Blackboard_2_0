@@ -11,9 +11,10 @@ namespace Blackboard_2_0.Models.Data
         public SelectList Students { get; set; }
         public SelectList Assignerses { get; set; }
         public HandIn HandIn { get; set; }
-        
 
-        public int  Id { get; set; }
+        public int CourseId { get; set; }
+        
+        public int  StudentId { get; set; }
 
         public string Text { get; set; }
 

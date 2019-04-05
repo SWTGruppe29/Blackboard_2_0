@@ -29,7 +29,7 @@ namespace Blackboard_2_0.Controllers
                 if (assignment.MaxAssigners == 1)
                 {
                     model.IsSolo = true;
-                    model.Id = assignment.CourseId;
+                    model.CourseId = assignment.CourseId;
                     model.Students = new SelectList(_context.Students.Where(s => s.Attends.Exists(x => x.CourseId == assignment.CourseId)), "Id", "Id");
                     model.Assignerses = null;
                     return View(model);
@@ -47,7 +47,7 @@ namespace Blackboard_2_0.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult StudentHandIn(int id, [Bind("Text,Id")] HandInViewModel handIn)
+        public IActionResult StudentHandIn(int id, [Bind("Text,StudentId,CourseId")] HandInViewModel handIn)
         {
             if (ModelState.IsValid)
             {
@@ -56,13 +56,19 @@ namespace Blackboard_2_0.Controllers
                 _context.Assignerses.Add(student);
                 _context.SaveChanges();
 
+                // add student to group
+                StudentAssigners group = new StudentAssigners();
+                group.StudentId = handIn.StudentId;
+                group.AssignersId = student.AssignersId;
+                _context.StudentAssignerses.Add(group);
+                //
                 HandIn hi = new HandIn();
                 hi.AssignersId = student.AssignersId;
                 hi.AssignmentId = id;
                 hi.Text = handIn.Text;
                 _context.HandIns.Add(hi);
                 _context.SaveChanges();
-                return RedirectToAction("Details", "Course",new{id = handIn.Id});
+                return RedirectToAction("Details", "Course",new{id = handIn.CourseId});
             }
 
             return View();
@@ -74,26 +80,30 @@ namespace Blackboard_2_0.Controllers
             return View(handIns);
         }
 
-        public IActionResult Grade(HandIn handIn)
+        public IActionResult Grade(int AssignersId, int AssignmentId)
         {
             GradeViewModel model = new GradeViewModel();
-            HandIn hi = _context.HandIns
-                .Where(h => h.AssignersId == handIn.AssignersId & h.AssignmentId == handIn.AssignmentId)
-                .Include(h => h.Assignment)
-                .First();
-            model.AssignmentId = hi.AssignmentId;
-            model.GraderSelectList = new SelectList(_context.Teachers.Where(t => t.Teaches.Exists(x => x.CourseId == hi.Assignment.CourseId)),"Id","Id");  
-            return View(model);
+            HandIn hi = _context.HandIns.Where(x => x.AssignersId == AssignersId & x.AssignmentId == AssignmentId).Include(x => x.Assignment).FirstOrDefault();
+            if (hi != null)
+            {
+                model.HandIn = hi;
+                model.GraderSelectList = new SelectList(_context.Teachers.Where(t => t.Teaches.Exists(x => x.CourseId == hi.Assignment.CourseId)), "Id", "Id");
+                return View(model);
+            }
+
+            return NotFound();
+            
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Grade([Bind("HandIn.GraderId,HandIn.Grade")]GradeViewModel model)
+        public IActionResult Grade(int AssignersId, int AssignmentId, [Bind("GraderId,Grade,AssignersId,AssignmentId,Text", nameof(GradeViewModel.HandIn))] GradeViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.HandIns.Update(model.HandIn);
-                return RedirectToAction("ViewHandInsForAssignment", new {id = model.AssignmentId});
+                _context.Update(model.HandIn);
+                _context.SaveChanges();
+                return RedirectToAction("ViewHandInsForAssignment", new {id = model.HandIn.AssignmentId});
             }
             return View(model);
         }

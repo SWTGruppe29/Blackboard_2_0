@@ -71,7 +71,8 @@ namespace Blackboard_2_0.Migrations
                 {
                     Id = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    LastName = table.Column<string>(nullable: true),
+                    Birthday = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,6 +91,8 @@ namespace Blackboard_2_0.Migrations
                 {
                     AssignmentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    MaxAssigners = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     CourseId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -225,8 +228,9 @@ namespace Blackboard_2_0.Migrations
                 {
                     AssignmentId = table.Column<int>(nullable: false),
                     AssignersId = table.Column<int>(nullable: false),
-                    Grade = table.Column<int>(nullable: false),
-                    GraderId = table.Column<int>(nullable: false)
+                    Grade = table.Column<string>(nullable: true),
+                    GraderId = table.Column<int>(nullable: true),
+                    Text = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -248,7 +252,7 @@ namespace Blackboard_2_0.Migrations
                         column: x => x.GraderId,
                         principalTable: "Teachers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -275,7 +279,8 @@ namespace Blackboard_2_0.Migrations
                 name: "ContentAreas",
                 columns: table => new
                 {
-                    ContentAreaId = table.Column<int>(nullable: false),
+                    ContentAreaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FolderId = table.Column<int>(nullable: false),
                     CourseContentId = table.Column<int>(nullable: false),
                     TextBlock = table.Column<string>(nullable: true)
@@ -284,11 +289,11 @@ namespace Blackboard_2_0.Migrations
                 {
                     table.PrimaryKey("PK_ContentAreas", x => x.ContentAreaId);
                     table.ForeignKey(
-                        name: "FK_ContentAreas_CourseContents_ContentAreaId",
-                        column: x => x.ContentAreaId,
+                        name: "FK_ContentAreas_CourseContents_CourseContentId",
+                        column: x => x.CourseContentId,
                         principalTable: "CourseContents",
                         principalColumn: "CourseContentId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ContentAreas_Folders_FolderId",
                         column: x => x.FolderId,
@@ -333,6 +338,11 @@ namespace Blackboard_2_0.Migrations
                 table: "Calendars",
                 column: "CourseId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContentAreas_CourseContentId",
+                table: "ContentAreas",
+                column: "CourseContentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ContentAreas_FolderId",

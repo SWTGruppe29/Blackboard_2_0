@@ -82,7 +82,7 @@ namespace Blackboard_2_0.Models.Data
             modelBuilder.Entity<ContentArea>()
                 .HasOne(b => b.CourseContent)
                 .WithMany(a => a.ContentAreas)
-                .HasForeignKey(b => b.ContentAreaId);
+                .HasForeignKey(b => b.CourseContentId);
 
 
 

@@ -30,7 +30,6 @@
 </div>
 
 <h1>Create</h1>
-<h1>Create</h1>
 
 <h4>ContentArea</h4>
 <hr />
@@ -38,10 +37,7 @@
     <div class="col-md-4">
         <form asp-controller="ContentAreas" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="@Model.ContentArea.ContentAreaId" class="control-label"></label>
-                <select asp-for="@Model.ContentArea.ContentAreaId" class="form-control" asp-items="ViewBag.ContentAreaId"></select>
-            </div>
+
             <div class="form-group">
                 <label asp-for="@Model.ContentArea.FolderId" class="control-label"></label>
                 <select asp-for="@Model.ContentArea.FolderId" class="form-control" asp-items="ViewBag.FolderId"></select>

@@ -101,7 +101,9 @@ namespace Blackboard_2_0.Migrations
 
             modelBuilder.Entity("Blackboard_2_0.Models.Data.ContentArea", b =>
                 {
-                    b.Property<int>("ContentAreaId");
+                    b.Property<int>("ContentAreaId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CourseContentId");
 
@@ -110,6 +112,8 @@ namespace Blackboard_2_0.Migrations
                     b.Property<string>("TextBlock");
 
                     b.HasKey("ContentAreaId");
+
+                    b.HasIndex("CourseContentId");
 
                     b.HasIndex("FolderId");
 
@@ -292,7 +296,7 @@ namespace Blackboard_2_0.Migrations
                 {
                     b.HasOne("Blackboard_2_0.Models.Data.CourseContent", "CourseContent")
                         .WithMany("ContentAreas")
-                        .HasForeignKey("ContentAreaId")
+                        .HasForeignKey("CourseContentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Blackboard_2_0.Models.Data.Folder", "Folder")

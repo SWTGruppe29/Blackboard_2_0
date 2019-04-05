@@ -48,7 +48,6 @@ namespace Blackboard_2_0.Controllers
         // GET: ContentAreas/Create
         public IActionResult Create()
         {
-            ViewData["ContentAreaId"] = new SelectList(_context.CourseContents, "CourseContentId", "CourseContentId");
             ViewData["FolderId"] = new SelectList(_context.Folders, "FolderId", "FolderId");
 
             return View();
@@ -59,7 +58,7 @@ namespace Blackboard_2_0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContentAreaId,FolderId,CourseContentId,TextBlock")] ContentArea contentArea)
+        public async Task<IActionResult> Create([Bind("FolderId,CourseContentId,TextBlock")] ContentArea contentArea)
         {
             if (ModelState.IsValid)
             {

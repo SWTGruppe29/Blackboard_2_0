@@ -14,7 +14,7 @@ namespace Blackboard_2_0.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Assignerses_AssignmentId",
-                table: "Assignerses",
+                table: "Assignerses", 
                 column: "AssignmentId");
 
             migrationBuilder.AddForeignKey(
@@ -23,7 +23,7 @@ namespace Blackboard_2_0.Migrations
                 column: "AssignmentId",
                 principalTable: "Assignments",
                 principalColumn: "AssignmentId",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.NoAction);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

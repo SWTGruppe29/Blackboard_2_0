@@ -87,11 +87,7 @@ namespace Blackboard_2_0.Models.Data
             modelBuilder.Entity<Assigners>()
                 .HasOne(a => a.Assignment)
                 .WithMany(b => b.Assigners)
-                .HasForeignKey(a => a.AssignmentId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-
-
+                .HasForeignKey(a => a.AssignmentId);
         }
     }
 }

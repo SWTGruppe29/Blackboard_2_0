@@ -9,34 +9,44 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Grade)
-            </th>
-            <th>
-                Group
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Grader)
-            </th>
-            <th>HandIn Text</th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            @if (Model.First().Assignment.MaxAssigners > 1)
+            {
+                <text>Group</Text>
+            }
+            else
+            {
+                <text>Student</Text>
+            }
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grader)
+        </th>
+        <th>HandIn Text</th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Grade)
             </td>
             <td>
-                @item.AssignersId.ToString()
+                @item.Assigners.Name
             </td>
             <td>
                 @{
                     if (item.GraderId != null)
                     {
-                        @item.GraderId.ToString()
+                        @item.Grader.FirstName
+                        <text> </text>
+                        @item.Grader.LastName
                     }
                 }
 
@@ -48,6 +58,8 @@
                 <a asp-controller="HandIn" asp-action="Grade" asp-route-AssignersId="@item.AssignersId" asp-route-AssignmentId="@item.AssignmentId">Grade</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+
+

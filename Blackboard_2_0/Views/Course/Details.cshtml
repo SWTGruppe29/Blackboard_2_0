@@ -155,11 +155,11 @@
                 @{
                     if (item.MaxAssigners == 1)
                     {
-                        <a asp-controller="HandIn" asp-action="StudentHandIn" asp-route-id="@item.AssignmentId">Handin</a>
+                        <a asp-controller="HandIn" asp-action="HandIn" asp-route-id="@item.AssignmentId">Handin</a>
                     }
                     else
                     {
-                        <a asp-controller="HandIn" asp-action="GroupHandIn" asp-route-id="@item.AssignmentId">Handin</a>
+                        <a asp-controller="HandIn" asp-action="GroupOverview" asp-route-id="@item.AssignmentId">Handin</a>
                     }
                 }
 

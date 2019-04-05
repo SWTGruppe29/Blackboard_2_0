@@ -14,6 +14,6 @@ namespace Blackboard_2_0.Models.Data
         public Course Course { get; set; }
         public int AssignmentId { get; set; }
         public List<HandIn> HandIns { get; set; }
-        public ICollection<Assigners> Assigners { get; set; }
+        public List<Assigners> Assigners { get; set; }
     }
 }

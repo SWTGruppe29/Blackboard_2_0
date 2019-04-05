@@ -1,0 +1,73 @@
+﻿@model Blackboard_2_0.Models.Data.HandInViewModel
+
+@{
+    ViewData["Title"] = "StudentHandIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>StudentHandIn</h1>
+
+<h4>HandIn</h4>
+<hr />
+
+@if (Model.IsSolo)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="StudentHandIn" asp-route-id="@ViewContext.RouteData.Values["id"]">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="StudentId" class="control-label">Student Id</label>
+                    <select asp-for="StudentId" class="form-control" asp-items="@Model.Students"></select>
+                </div>
+                <input type="hidden" asp-for="CourseId" />
+
+                <div clas="form-group">
+                    <label asp-for="Text" class="control-label">HandIn text</label>
+                    <input asp-for="Text" class="form-control" />
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btnStyle" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="GroupHandIn" asp-route-id="@ViewContext.RouteData.Values["id"]">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="@Model.AssignersId" class="control-label">Gruppe</label>
+                    <select asp-for="@Model.AssignersId" class="form-control" asp-items="@Model.Assignerses"></select>
+                </div>
+                <input type="hidden" asp-for="CourseId" />
+                <input type="hidden" asp-for="IsSolo" />
+                <div clas="form-group">
+                    <label asp-for="Text" class="control-label">HandIn text</label>
+                    <input asp-for="Text" class="form-control" />
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btnStyle" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+
+<div>
+    <a asp-action="Details" asp-controller="Course" asp-route-id="@Model.CourseId">Back to Course</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -6,17 +6,23 @@
 
 
 $(document).ready(function () {
+    
     var url = window.location +'';
     var res = url.split("/");
     
     var previousUrl = document.referrer.split("/");
 
+    console.log(previousUrl[3]);
+    console.log(res[3]);
 
+    if (previousUrl[3] === res[3]) { }
 
-    $('#active-nav li a').each(function () {
+    $("#active-nav li a").each(function () {
         var str = this.href.split("/");
-        if (str[3] == res[3] || this.href == "") {
-            $(this).parent().addClass('active');
+        if (str[3] === res[3] || this.href === "") {
+            $(this).parent().addClass("active");
         }
     });
+
+
 });

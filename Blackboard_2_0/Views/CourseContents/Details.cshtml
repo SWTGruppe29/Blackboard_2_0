@@ -1,0 +1,76 @@
+﻿@model CourseContentViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="top-headline">
+    <h1>@Model.CourseContent.Name</h1>
+    <p>
+        <a class="btnStyle" asp-action="Create">Create content area</a>
+        <a class="btnStyle" asp-controller="Folders" asp-action="Create" asp-route-id="@ViewContext.RouteData.Values["id"]">Create folder</a>
+    </p>
+</div>
+
+
+<div>
+    <h5>@Model.CourseContent.Course.Name</h5>
+    <hr />
+
+    @foreach (var item in Model.ContentAreas)
+    {
+        <p>@item.CourseContentId</p>
+        <p>@item.TextBlock</p>
+    }
+
+
+</div>
+
+<h1>Create</h1>
+<h1>Create</h1>
+
+<h4>ContentArea</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="ContentAreas" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.ContentArea.ContentAreaId" class="control-label"></label>
+                <select asp-for="@Model.ContentArea.ContentAreaId" class="form-control" asp-items="ViewBag.ContentAreaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ContentArea.FolderId" class="control-label"></label>
+                <select asp-for="@Model.ContentArea.FolderId" class="form-control" asp-items="ViewBag.FolderId"></select>
+            </div>
+            <div class="form-group">
+                <input asp-for="@Model.ContentArea.CourseContentId" hidden="hidden" value="@ViewContext.RouteData.Values["id"]" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ContentArea.TextBlock" class="control-label"></label>
+                <input asp-for="@Model.ContentArea.TextBlock" class="form-control" />
+                <span asp-validation-for="@Model.ContentArea.TextBlock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<div>
+    --
+    <a asp-controller="Course" asp-action="Details" asp-route-id="@Model.CourseContent.Course.CourseId">Edit</a> |
+    <a asp-controller="Course" asp-action="Details" asp-route-id="@Model.CourseContent.Course.CourseId">Back to course</a>
+</div>

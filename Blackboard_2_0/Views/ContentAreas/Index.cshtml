@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Blackboard_2_0.Models.Data.ContentArea>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Folder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseContentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TextBlock)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Folder.FolderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseContent.CourseContentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseContentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextBlock)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ContentAreaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ContentAreaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContentAreaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

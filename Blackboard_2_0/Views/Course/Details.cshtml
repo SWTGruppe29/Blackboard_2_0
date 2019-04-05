@@ -5,119 +5,166 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@Model.CourseName</h1>
+<div class="DetailPage">
+    <div id="left" class="column">
+        <aside class="main-content">
+            <div class="top-headline">
+                <h5>
+                    @Model.CourseName
+                </h5>
+            </div>
+            <a class="course-content-link" asp-controller="Course" asp-action="Details" asp-route-id="@ViewContext.RouteData.Values["id"]">Forside</a>
+            <hr />
+            <p class="course-content-heading">Information</p>
+            <a class="course-content-link">Announcements</a>
+            <a class="course-content-link">Tools</a>
+            <hr />
+            <p class="course-content-heading">Teaching</p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Students
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Students)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Student.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(i => item.Student.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(i => item.Status)
-            </td>
-            <td>
-                <text>au</text>@for (var i = item.Student.Id.ToString().Length; i < 6; i++)
-                {
-                <text>0</text>
-                }<text>@item.Student.Id.ToString()</text>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+            @foreach (var item in Model.CourseContents)
+            {
+                <a class="course-content-link" asp-controller="CourseContents" asp-action="Details" asp-route-id="@item.CourseContentId">
+                    @Html.DisplayFor(content => item.Name)
+                </a>
+
+            }
+        </aside>
+    </div>
+
+    <div id="right" class="main-detail-content column">
+        <div class="main-content">
+            
+            <div class="top-headline">
+                <h1>Forside</h1>
+                <p>
+                    <a class="btnStyle" asp-controller="CourseContents" asp-action="Create" asp-route-id="@ViewContext.RouteData.Values["id"]">Create course content</a>
+                </p>
+            </div>
+            
+            <div class="course-content-areas">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Students
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Students)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Student.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.Student.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.Status)
+                                </td>
+                                <td>
+                                    <text>au</text>
+                                    @for (var i = item.Student.Id.ToString().Length; i < 6; i++)
+                                    {
+                                        <text>0</text>
+                                    }
+                                    <text>@item.Student.Id.ToString()</text>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <br />
+                <br />
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Teachers
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Teachers)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Teacher.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.Teacher.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.Role)
+                                </td>
+                                <td>
+                                    <text>au</text>
+                                    @for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
+                                    {
+                                        <text>0</text>
+                                    }
+                                    @item.Teacher.Id.ToString()
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <br />
+                <br />
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Teachers
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Teachers)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Teacher.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(i => item.Teacher.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(i => item.Role)
-            </td>
-            <td>
-                <text>au</text>@for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
-                {
-                <text>0</text>
-                }@item.Teacher.Id.ToString()
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Assignments
+                            </th>
+                            <th>
+                                Max assigners
+                            </th>
+                            <th>
+                                Course id
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Assignments)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.MaxAssigners)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(i => item.CourseId)
+                                </td>
+                                <td>
+                                    <a asp-controller="Assignments" asp-action="Delete" asp-route-id="@item.AssignmentId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
-
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Assignments
-            </th>
-            <th>
-                Max assigners
-            </th>
-            <th>
-                Course id
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Assignments)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(i => item.MaxAssigners)
-            </td>
-            <td>
-                @Html.DisplayFor(i => item.CourseId)
-            </td>
-            <td>
-                <a asp-controller="Assignments" asp-action="Delete" asp-route-id="@item.AssignmentId">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-
-<a class="btnStyle" asp-controller="Assignments" asp-action="Create" asp-route-id="@ViewContext.RouteData.Values["id"]">Add assignment</a>
-<a class="btnStyle" asp-controller="Course" asp-action="Index">Back to Course</a> |
-<a class="btnStyle"asp-action="Create" asp-controller="Attends" asp-route-id="@ViewContext.RouteData.Values["id"]">Enroll a student</a> |
-<a class="btnStyle" asp-action="Create" asp-controller="Teaches" asp-route-id="@ViewContext.RouteData.Values["id"]">Add a teacher</a>
+                <a class="btnStyle" asp-controller="Assignments" asp-action="Create" asp-route-id="@ViewContext.RouteData.Values["id"]">Add assignment</a>
+                <a class="btnStyle" asp-controller="Course" asp-action="Index">Back to Course</a> |
+                <a class="btnStyle" asp-action="Create" asp-controller="Attends" asp-route-id="@ViewContext.RouteData.Values["id"]">Enroll a student</a> |
+                <a class="btnStyle" asp-action="Create" asp-controller="Teaches" asp-route-id="@ViewContext.RouteData.Values["id"]">Add a teacher</a>
+            </div>
+        </div>
+    </div>
+</div>

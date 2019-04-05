@@ -1,0 +1,48 @@
+﻿@model Blackboard_2_0.Models.Data.GradeViewModel
+
+@{
+    ViewData["Title"] = "Grade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Grade</h1>
+
+<h4>HandIn</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Grade">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select class="form-control" asp-for="HandIn.Grade">
+                    <option>-3</option> 
+                    <option>0</option>
+                    <option>2</option>
+                    <option>4</option>
+                    <option>7</option>
+                    <option>10</option>
+                    <option>12</option>
+                </select>
+            </div>
+            <input type="hidden" asp-for="HandIn.AssignmentId"/>
+            <input type="hidden" asp-for="HandIn.AssignersId"/>
+            <input type="hidden" asp-for="HandIn.Text"/>
+            <div class="form-group">
+                <label asp-for="HandIn.GraderId" class="control-label"></label>
+                <select asp-for="HandIn.GraderId" class="form-control" asp-items="@Model.GraderSelectList"></select>
+                <span asp-validation-for="HandIn.GraderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ViewHandInsForAssignment" asp-route-id="@Model.HandIn.AssignmentId">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

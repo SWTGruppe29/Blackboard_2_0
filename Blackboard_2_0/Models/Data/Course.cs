@@ -18,7 +18,7 @@ namespace Blackboard_2_0.Models.Data
 
         public Calendar Calendar { get; set; }
 
-
+        public List<CourseContent> CourseContents { get; set; }
 
     }
 }

@@ -4,14 +4,16 @@ using Blackboard_2_0.Models.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blackboard_2_0.Migrations
 {
     [DbContext(typeof(BbContext))]
-    partial class BbContextModelSnapshot : ModelSnapshot
+    [Migration("20190404155746_AddedTextToHandIn")]
+    partial class AddedTextToHandIn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,9 +190,9 @@ namespace Blackboard_2_0.Migrations
 
                     b.Property<int>("AssignmentId");
 
-                    b.Property<string>("Grade");
+                    b.Property<int>("Grade");
 
-                    b.Property<int?>("GraderId");
+                    b.Property<int>("GraderId");
 
                     b.Property<string>("Text");
 
@@ -312,7 +314,7 @@ namespace Blackboard_2_0.Migrations
             modelBuilder.Entity("Blackboard_2_0.Models.Data.CourseContent", b =>
                 {
                     b.HasOne("Blackboard_2_0.Models.Data.Course", "Course")
-                        .WithMany("CourseContents")
+                        .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -339,7 +341,8 @@ namespace Blackboard_2_0.Migrations
 
                     b.HasOne("Blackboard_2_0.Models.Data.Teacher", "Grader")
                         .WithMany("HandIns")
-                        .HasForeignKey("GraderId");
+                        .HasForeignKey("GraderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Blackboard_2_0.Models.Data.Student", b =>

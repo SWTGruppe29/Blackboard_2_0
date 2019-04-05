@@ -12,9 +12,12 @@ namespace Blackboard_2_0.Models.Data
     {
         [ForeignKey("AuId")]
         [Key]
+        [Display(Name = "AU ID")]
         public int Id { get; set; }
         public AuId AuId { get; set; }
+        [Display(Name="First Name")]
         public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
         public List<Attends> Attends { get; set; }
         public List<StudentAssigners> Assigners { get; set; }

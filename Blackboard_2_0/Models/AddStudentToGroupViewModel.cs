@@ -13,5 +13,6 @@ namespace Blackboard_2_0.Models
         public int AssignersId { get; set; }
         public string StudentId { get; set; }
         public int AssignmentId { get; set; }
+        public string GroupName { get; set; }
     }
 }

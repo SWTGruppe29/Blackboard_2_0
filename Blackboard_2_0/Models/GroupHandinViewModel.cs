@@ -11,5 +11,7 @@ namespace Blackboard_2_0.Models
         public List<Assigners> Assigners { get; set; }
         public int AssignmentId { get; set; }
         public int MaxAssigners { get; set; }
+        public int CourseId { get; set; }
+
     }
 }

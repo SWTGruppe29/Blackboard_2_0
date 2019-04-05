@@ -169,9 +169,14 @@ namespace Blackboard_2_0.Controllers
         {
             var viewModel = new GroupHandinViewModel()
             {
-                Assigners = _context.Assignerses.Where(a => a.AssignmentId == id).Include(s=>s.Students).Include(s=>s.Assignment).ToList(),
+                Assigners = _context.Assignerses.Where(a => a.AssignmentId == id)
+                    .Include(s=>s.Students)
+                    .Include(s=>s.Assignment)
+                    .Include(s=>s.HandIns)
+                    .ToList(),
                 AssignmentId = id,
-                MaxAssigners = _context.Assignments.Find(id).MaxAssigners
+                MaxAssigners = _context.Assignments.Find(id).MaxAssigners,
+                CourseId = _context.Assignments.Find(id).CourseId
             };
 
             return View(viewModel);
@@ -216,7 +221,8 @@ namespace Blackboard_2_0.Controllers
             {
                 Attends = new SelectList(selectList, "Value", "Text"),
                 AssignersId = assignersId,
-                AssignmentId = assignmentId
+                AssignmentId = assignmentId,
+                GroupName = _context.Assignerses.First(x=>x.AssignersId==assignersId).Name
             };
 
             return View(viewModel);

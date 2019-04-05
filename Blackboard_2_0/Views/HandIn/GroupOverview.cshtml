@@ -8,6 +8,7 @@
 
 <a class="btnStyle" asp-controller="HandIn" asp-action="CreateGroup" asp-route-id="@Model.AssignmentId">Create group</a>
 <a class="btnStyle" asp-controller="HandIn" asp-action="HandIn" asp-route-id="@Model.AssignmentId">Handin</a>
+<a class="btnStyle" asp-controller="Course" asp-action="Details" asp-route-id="@Model.CourseId">Back to course</a>
 
 <h3>Groups</h3>
 <table class="table">
@@ -33,7 +34,7 @@
                 @Html.DisplayFor(i => item.Students.Count)
             </td>
             <td>
-                @if (item.Students.Count < Model.MaxAssigners)
+                @if (item.Students.Count < Model.MaxAssigners && item.HandIns.All(x => x.AssignmentId != item.AssignmentId))
                 {
                     <a asp-controller="HandIn" asp-action="AddStudentToGroup" asp-route-courseId="@item.Assignment.CourseId" asp-route-assignersId="@item.AssignersId" asp-route-assignmentId="@item.AssignmentId">Add student to group</a>
                 }

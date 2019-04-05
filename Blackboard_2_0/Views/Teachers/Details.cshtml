@@ -76,6 +76,9 @@
         <th>
             Hand Ins
         </th>
+        <th>
+            Given grade
+        </th>
         <th></th>
     </tr>
     </thead>
@@ -84,25 +87,25 @@
     {
         <tr>
             <td>
+                @Model.Courses.First(x=>x.CourseId==item.Assignment.CourseId).Course.Name 
+                <text> - </text>
                 @* Lav her et anker til handin details *@
-                @Html.DisplayFor(modelItem => item.AssignmentId)
+                @Html.DisplayFor(modelItem => item.Assignment.Name)
             </td>
             <td>
                 @Html.DisplayFor(i => item.Grade)
             </td>
                 
             <td>
-                au
-                @for (var i = 0; i < 6; i++)
+                <text>au</text>@for (var i = 0; i < 6; i++)
                 {
                     <text>0</text>
-                }
-                @item.GraderId.ToString()
+                }@item.GraderId.ToString()
             </td>
         </tr>
     }
     </tbody>
 </table>
 
-<a asp-controller="Teachers" asp-action="Index">Back to Teachers<</a>
+<a asp-controller="Teachers" asp-action="Index">Back to Teachers</a>
 

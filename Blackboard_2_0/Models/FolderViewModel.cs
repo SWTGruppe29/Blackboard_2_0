@@ -12,6 +12,7 @@ namespace Blackboard_2_0.Models
         public List<ContentArea> ContentAreas { get; set; }
 
         public int CourseContentId { get; set; }
+        public int FolderId { get; set; }
 
     }
 }

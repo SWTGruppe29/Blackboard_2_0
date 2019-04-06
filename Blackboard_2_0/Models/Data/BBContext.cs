@@ -84,6 +84,11 @@ namespace Blackboard_2_0.Models.Data
                 .WithMany(a => a.ContentAreas)
                 .HasForeignKey(b => b.CourseContentId);
 
+            modelBuilder.Entity<ContentArea>()
+                .HasOne(b => b.Folder)
+                .WithMany(a => a.ContentAreas)
+                .HasForeignKey(b => b.FolderId)
+                .IsRequired(false);
 
 
         }

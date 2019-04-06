@@ -46,9 +46,18 @@ namespace Blackboard_2_0.Controllers
         }
 
         // GET: ContentAreas/Create
-        public IActionResult Create(int id)
+        public IActionResult Create(int folderId, int id)
         {
-            ViewData["FolderId"] = new SelectList(_context.Folders, "FolderId", "FolderId");
+            if (folderId < 0)
+            {
+                ViewData["Check"] = false;
+                ViewData["FolderId"] = new SelectList(_context.Folders, "FolderId", "FolderId");
+            }
+            else
+            {
+                ViewData["Check"] = true;
+            }
+            
 
             return View();
         }
@@ -58,8 +67,13 @@ namespace Blackboard_2_0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id,[Bind("FolderId,TextBlock")] ContentArea contentArea)
+        public async Task<IActionResult> Create(int folderId, int id,[Bind("FolderId,TextBlock")] ContentArea contentArea)
         {
+            if (folderId > 0)
+            {
+                contentArea.FolderId = folderId;
+            }
+
             if (ModelState.IsValid)
             {
                 contentArea.CourseContentId = id;
@@ -72,6 +86,24 @@ namespace Blackboard_2_0.Controllers
             ViewData["FolderId"] = new SelectList(_context.Folders, "FolderId", "FolderId", contentArea.FolderId);
             return View(contentArea);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateFolder(int id, int FolderId, [Bind("FolderId,TextBlock")] ContentArea contentArea)
+        {
+            if (ModelState.IsValid)
+            {
+                contentArea.FolderId = id;
+                contentArea.CourseContentId = id;
+                _context.Add(contentArea);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details","CourseContents",new{id = id});
+            }
+
+            return View(contentArea);
+        }
+
 
         // GET: ContentAreas/Edit/5
         public async Task<IActionResult> Edit(int? id)

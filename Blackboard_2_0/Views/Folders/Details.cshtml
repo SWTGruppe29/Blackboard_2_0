@@ -8,10 +8,11 @@
 <div class="top-headline">
     <h1>Details</h1>
     <p>
-        <a class="btnStyle" asp-controller="ContentAreas" asp-action="Create" asp-route-folderId="@Model.FolderId">Create content area</a>
+        <a class="btnStyle" asp-controller="ContentAreas" asp-action="Create" asp-route-id="@Model.CourseContentId" asp-route-folderId="@Model.FolderId">Create content area</a>
     </p>
 </div>
 <div>
+    <h5>@Model.CourseContentId</h5>
 
     <h5>Content:</h5>
 

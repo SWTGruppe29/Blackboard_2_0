@@ -50,12 +50,12 @@ namespace Blackboard_2_0.Controllers
         {
             if (folderId < 0)
             {
-                ViewData["Check"] = false;
+                ViewData["Check"] = true;
                 ViewData["FolderId"] = new SelectList(_context.Folders, "FolderId", "FolderId");
             }
             else
             {
-                ViewData["Check"] = true;
+                ViewData["Check"] = false;  
             }
             
 

@@ -14,7 +14,9 @@ namespace Blackboard_2_0.Models.Data
 
         public int CourseId { get; set; }
         
-        public int  StudentId { get; set; }
+        public string  StudentId { get; set; }
+
+        public int AssignersId { get; set; }
 
         public string Text { get; set; }
 

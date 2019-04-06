@@ -1,0 +1,44 @@
+﻿@model List<Blackboard_2_0.Models.Data.StudentAssigners>
+@{
+    ViewData["Title"] = "GroupPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.First().Assigners.Name</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Student.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Student.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Student.LastName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <text>au</text>@for (var i = item.Student.Id.ToString().Length; i < 6; i++)
+                    {
+                        <text>0</text>
+                    }<text>@item.Student.Id.ToString()</text>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.LastName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="GroupOverview" asp-route-id="@Model.First().Assigners.AssignmentId">Back to group list</a>

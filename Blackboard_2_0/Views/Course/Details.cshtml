@@ -68,12 +68,10 @@
                                     @Html.DisplayFor(i => item.Status)
                                 </td>
                                 <td>
-                                    <text>au</text>
-                                    @for (var i = item.Student.Id.ToString().Length; i < 6; i++)
+                                    <text>au</text>@for (var i = item.Student.Id.ToString().Length; i < 6; i++)
                                     {
                                         <text>0</text>
-                                    }
-                                    <text>@item.Student.Id.ToString()</text>
+                                    }<text>@item.Student.Id.ToString()</text>
                                 </td>
                             </tr>
                         }
@@ -108,12 +106,10 @@
                                     @Html.DisplayFor(i => item.Role)
                                 </td>
                                 <td>
-                                    <text>au</text>
-                                    @for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
+                                    <text>au</text>@for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
                                     {
                                         <text>0</text>
-                                    }
-                                    @item.Teacher.Id.ToString()
+                                    }@item.Teacher.Id.ToString()
                                 </td>
                             </tr>
                         }
@@ -159,11 +155,11 @@
                 @{
                     if (item.MaxAssigners == 1)
                     {
-                        <a asp-controller="HandIn" asp-action="StudentHandIn" asp-route-id="@item.AssignmentId">Handin</a>
+                        <a asp-controller="HandIn" asp-action="HandIn" asp-route-id="@item.AssignmentId">Handin</a>
                     }
                     else
                     {
-                        <a asp-controller="HandIn"></a>
+                        <a asp-controller="HandIn" asp-action="GroupOverview" asp-route-id="@item.AssignmentId">Handin</a>
                     }
                 }
 
@@ -174,8 +170,8 @@
 </table>
 
                 <a class="btnStyle" asp-controller="Assignments" asp-action="Create" asp-route-id="@ViewContext.RouteData.Values["id"]">Add assignment</a>
-                <a class="btnStyle" asp-controller="Course" asp-action="Index">Back to Course</a> |
-                <a class="btnStyle" asp-action="Create" asp-controller="Attends" asp-route-id="@ViewContext.RouteData.Values["id"]">Enroll a student</a> |
+                <a class="btnStyle" asp-controller="Course" asp-action="Index">Back to Course</a>
+                <a class="btnStyle" asp-action="Create" asp-controller="Attends" asp-route-id="@ViewContext.RouteData.Values["id"]">Enroll a student</a>
                 <a class="btnStyle" asp-action="Create" asp-controller="Teaches" asp-route-id="@ViewContext.RouteData.Values["id"]">Add a teacher</a>
             </div>
         </div>

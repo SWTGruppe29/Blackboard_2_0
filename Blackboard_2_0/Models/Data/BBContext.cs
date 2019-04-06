@@ -91,6 +91,10 @@ namespace Blackboard_2_0.Models.Data
                 .IsRequired(false);
 
 
+            modelBuilder.Entity<Assigners>()
+                .HasOne(a => a.Assignment)
+                .WithMany(b => b.Assigners)
+                .HasForeignKey(a => a.AssignmentId);
         }
     }
 }

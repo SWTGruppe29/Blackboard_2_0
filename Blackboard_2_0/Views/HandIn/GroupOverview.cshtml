@@ -1,0 +1,46 @@
+﻿@model GroupHandinViewModel
+@{
+    ViewData["Title"] = "GroupOverview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GroupHandIn</h1>
+
+<a class="btnStyle" asp-controller="HandIn" asp-action="CreateGroup" asp-route-id="@Model.AssignmentId">Create group</a>
+<a class="btnStyle" asp-controller="HandIn" asp-action="HandIn" asp-route-id="@Model.AssignmentId">Handin</a>
+<a class="btnStyle" asp-controller="Course" asp-action="Details" asp-route-id="@Model.CourseId">Back to course</a>
+
+<h3>Groups</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Group name
+        </th>
+        <th>
+            Number of students
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Assigners)
+    {
+        <tr>
+            <td>
+                <a asp-controller="HandIn" asp-action="GroupPage" asp-route-id="@item.AssignersId">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(i => item.Students.Count)
+            </td>
+            <td>
+                @if (item.Students.Count < Model.MaxAssigners && item.HandIns.All(x => x.AssignmentId != item.AssignmentId))
+                {
+                    <a asp-controller="HandIn" asp-action="AddStudentToGroup" asp-route-courseId="@item.Assignment.CourseId" asp-route-assignersId="@item.AssignersId" asp-route-assignmentId="@item.AssignmentId">Add student to group</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

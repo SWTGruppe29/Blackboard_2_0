@@ -12,15 +12,51 @@
     </p>
 </div>
 <div>
-        
+
     <h5 class="h5-heading">Content areas:</h5>
-    
+
 
     @foreach (var item in Model.ContentAreas)
     {
         <div class="content-area">
-            <img src="/images/document_on.png"/>
-            <p>@item.TextBlock</p>
+            <img src="/images/document_on.png" />
+            <div class="textarea">
+                <p class="show contentlink">Create content link</p>
+                <div class="hidden" id="createLink">
+                    <form asp-controller="ContentLinks" asp-action="Create" asp-route-pageId="@ViewContext.RouteData.Values["id"]" asp-route-id="@item.ContentAreaId">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <label asp-for="@Model.ContentLink.Type" class="control-label"></label>
+                        <input asp-for="@Model.ContentLink.Type" placeholder="Audio, video, group signup links" class="input-link-form" />
+                        <span asp-validation-for="@Model.ContentLink.Type" class="text-danger"></span>
+
+                        <label style="margin-left: 20px;" asp-for="@Model.ContentLink.ContentUri" class="control-label"></label>
+                        <input asp-for="@Model.ContentLink.ContentUri" placeholder="https://www.google.dk/" class="input-link-form2" />
+                        <span asp-validation-for="@Model.ContentLink.ContentUri" class="text-danger"></span>
+
+                        <input style="margin-left: 20px;" type="submit" value="Create" class="btnStyle" />
+
+                    </form>
+                </div>
+                <div class="link-container">
+                    @if (item.ContentLinks.Count > 0)
+                    {
+                        <p class="attachedFiles">Attached Files:</p>
+                        foreach (var link in item.ContentLinks)
+                        {
+                            <div class="contentLinks">
+                                <p>
+                                    <img src="/images/document_on.png" />
+                                    <a href="@link.ContentUri">@link.ContentUri</a>
+                                    (Type:
+                                    @link.Type)
+                                </p>
+                            </div>
+                        }
+                    }
+                </div>
+                <p>@item.TextBlock</p>
+            </div>
         </div>
     }
 
@@ -28,7 +64,7 @@
 
     <hr />
 
- 
+
 
     <a asp-controller="CourseContents" asp-action="Details" asp-route-id="@Model.CourseContentId">Back to Course Content</a>
 

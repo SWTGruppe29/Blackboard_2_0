@@ -22,7 +22,65 @@ hr {
 .h5-heading {
     padding-bottom: 10px;
 }
+.contentLinks p {
+    margin-bottom: 0px;
+    padding: 0px;
+}
+.contentLinks img {
+    width: 15px !important;
+    padding-top: 5px !important;
+}
+.contentLinks a {
+    text-decoration: underline;
+    color: #75bf40;
+}
+.input-link-form {
+    width: 27%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 
+.input-link-form2 {
+    width: 27%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.attachedFiles {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding: 0px;
+}
+
+.link-container {
+    margin-bottom: 20px;
+}
+
+.contentlink {
+    color: black;
+    display: block;
+    text-decoration: underline;
+    padding-bottom: 0px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
 .textblock {
     height: 200px;
     width: 32rem;
@@ -45,10 +103,13 @@ hr {
 .folder p img {
     width: 15px;
 }
+.hidden {
+    display: none;
+}
 
-.content-area p {
-    padding-top: 10px;
+.textarea {
     padding-left: 75px;
+    padding-top: 5px;
 }
 
 .course-content-areas {

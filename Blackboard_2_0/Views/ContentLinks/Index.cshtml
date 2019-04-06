@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Blackboard_2_0.Models.Data.ContentLink>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContentArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContentUri)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContentArea.ContentAreaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContentUri)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ContentLinkId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ContentLinkId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContentLinkId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

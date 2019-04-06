@@ -23,6 +23,16 @@ $(document).ready(function () {
             $(this).parent().addClass("active");
         }
     });
+    
+});
+
+$(function () {
+
+    $('.show').click(function () {
+
+        $('.hidden').toggle();
+
+    });
 
 
 });

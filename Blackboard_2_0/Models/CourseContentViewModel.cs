@@ -15,6 +15,7 @@ namespace Blackboard_2_0.Models
             CourseContent = new CourseContent();
             Course = new Course();
             ContentArea = new ContentArea();
+            ContentLink = new ContentLink();
             
 
         }
@@ -23,7 +24,9 @@ namespace Blackboard_2_0.Models
         public ContentArea ContentArea { get; set; }
         public List<Folder> Folders { get; set; }
         public CourseContent CourseContent { get; set; }
-        public Course Course { get; set; }  
+        public Course Course { get; set; }
+        public ContentLink ContentLink { get; set; }    
+
 
     }
 

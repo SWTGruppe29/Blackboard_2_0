@@ -42,9 +42,7 @@ namespace Blackboard_2_0.Controllers
             model.CourseContent = await _context.CourseContents
                 .Include(c => c.Course)
                 .FirstOrDefaultAsync(m => m.CourseContentId == id);
-
-
-
+            
             var courseContent = await _context.CourseContents
                 .Include(c => c.Course)
                 .FirstOrDefaultAsync(m => m.CourseContentId == id);

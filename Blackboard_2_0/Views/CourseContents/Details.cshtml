@@ -10,20 +10,25 @@
 <div class="top-headline">
     <h1>@Model.CourseContent.Name</h1>
     <p>
-        <a class="btnStyle" asp-action="Create" asp-controller="ContentAreas" asp-route-id="@ViewContext.RouteData.Values["id"]" >Create content area</a>
+        <a class="btnStyle" asp-action="Create" asp-controller="ContentAreas" asp-route-folderId="-1" asp-route-id="@ViewContext.RouteData.Values["id"]" >Create content area</a>
         <a class="btnStyle" asp-controller="Folders" asp-action="Create" asp-route-id="@ViewContext.RouteData.Values["id"]">Create folder</a>
     </p>
 </div>
-
+<hr/>
 
 <div>
 
-    <h5>Content:</h5>
-
+    <h5 class="h5-heading">Content areas:</h5>
+    
+    
     @foreach (var item in Model.ContentAreas)
     {
-        <p>@item.TextBlock</p>
+        <div class="content-area">
+            <img src="/images/document_on.png"/>
+            <p>@item.TextBlock</p>
+        </div>
     }
+
         
 
     <hr/>
@@ -31,7 +36,12 @@
     <h5>Folders:</h5>
     @foreach (var folder in Model.Folders)
     {
-        <p><a asp-controller="Folders" asp-action="Details" asp-route-id="@folder.FolderId">@folder.FolderName</a></p>
+        <div class="folder">
+            <p>
+                <img src="/images/document_on.png" />
+                <a class="folder-style" asp-controller="Folders" asp-action="Details" asp-route-id="@folder.FolderId">@folder.FolderName</a>
+            </p>
+        </div>
     }
 
     <hr/>

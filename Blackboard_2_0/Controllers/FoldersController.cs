@@ -44,6 +44,7 @@ namespace Blackboard_2_0.Controllers
             model.ContentAreas = await _context.ContentAreas.Where(c => c.CourseContentId == folder.CourseContentId & c.FolderId == folder.FolderId).ToListAsync();
             model.CourseContentId = folder.CourseContentId;
             model.FolderId = folder.FolderId;
+            model.Foldername = folder.FolderName;
 
 
             return View(model);

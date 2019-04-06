@@ -13,6 +13,7 @@ namespace Blackboard_2_0.Models
 
         public int CourseContentId { get; set; }
         public int FolderId { get; set; }
+        public string Foldername { get; set; }
 
     }
 }

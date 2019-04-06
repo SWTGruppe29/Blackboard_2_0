@@ -4,7 +4,51 @@ for details on configuring this project to bundle and minify static web assets. 
 /* Detailpage styling:*/
 
 main {
+    padding-bottom: 20px;
+}
+main {
     width: 100% !important;
+}
+hr {
+    margin-top: 0px !important;
+   
+}
+.content-area {
+    background-color: white !important;
+    padding: 20px !important;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.h5-heading {
+    padding-bottom: 10px;
+}
+
+.textblock {
+    height: 200px;
+    width: 32rem;
+}
+
+.content-area img {
+    float: left;
+    width: 55px;
+}
+
+.folder-style {
+    color: #13372c;
+    text-decoration: underline;
+}
+
+.folder-style:hover {
+    color: #45be55 !important;
+}
+
+.folder p img {
+    width: 15px;
+}
+
+.content-area p {
+    padding-top: 10px;
+    padding-left: 75px;
 }
 
 .course-content-areas {
@@ -29,10 +73,9 @@ main {
 
 .DetailPage {
     width: 100% !important;
-    margin: 0px auto;
+    margin: auto ;
     display: flex;
-    height: 100%;
-    overflow: auto;
+    min-height: 100%;
     background-color: #f3f3f3;
 }
 
@@ -42,16 +85,20 @@ main {
 
 .column {
     padding: 20px;
-    height: 100%; /*allows both columns to span the full height of the browser window*/
     display: flex;
-    flex-direction: column; /*places the left and right headers above the bottom content*/
+    flex-direction: column;  /*places the left and right headers above the bottom content*/
 }
 #left {
     flex-shrink: 0; /*makes sure that content is not cut off in a smaller browser window*/
     background-color: #e7e7e7;
-    width: 14%;
+    width: 13rem;
+    overflow: auto;
 }
 
+.bottom {
+    flex-grow: 1; /*ensures that the container will take up the full height of the parent container*/
+    overflow-y: auto; /*adds scroll to this container*/
+}
 
 #right {
     background-color: #f3f3f3;
@@ -161,7 +208,8 @@ a.navbar-brand {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    height: 100%;
 }
 @media (min-width: 768px) {
   html {
@@ -188,16 +236,17 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
-}
-
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
     height: 100%;
 }
+
+body {
+    margin: 0;
+    height: 100%;
+    background-color: #f3f3f3;
+    margin: 0px; /*removes default style*/
+    box-sizing: border-box;
+}
+
 .footer {
     position: absolute;
     bottom: 0;

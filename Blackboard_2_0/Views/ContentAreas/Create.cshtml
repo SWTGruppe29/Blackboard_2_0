@@ -16,10 +16,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @if ((bool)ViewData["Check"])
             {
-                <div class="form-group">
-                    <label asp-for="FolderId" class="control-label"></label>
-                    <select asp-for="FolderId" class ="form-control" asp-items="ViewBag.FolderId"></select>
-                </div>
+                
             }
             else
             {

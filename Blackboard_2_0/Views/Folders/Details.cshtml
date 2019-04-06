@@ -6,32 +6,30 @@
 }
 
 <div class="top-headline">
-    <h1>Details</h1>
+    <h1>@Model.Foldername</h1>
     <p>
         <a class="btnStyle" asp-controller="ContentAreas" asp-action="Create" asp-route-id="@Model.CourseContentId" asp-route-folderId="@Model.FolderId">Create content area</a>
     </p>
 </div>
 <div>
-    <h5>@Model.CourseContentId</h5>
-
-    <h5>Content:</h5>
+        
+    <h5 class="h5-heading">Content areas:</h5>
+    
 
     @foreach (var item in Model.ContentAreas)
     {
-        <p>@item.TextBlock</p>
-        }
-
-
-    <hr />
-
-    <h5>Folders:</h5>
-    @foreach (var folder in Model.Folders)
-    {
-        <p><a asp-controller="Folders" asp-action="Details" asp-route-id="@folder.FolderId">@folder.FolderName</a></p>
+        <div class="content-area">
+            <img src="/images/document_on.png"/>
+            <p>@item.TextBlock</p>
+        </div>
     }
 
+
+
     <hr />
-    
-    <a asp-controller="CourseContents" asp-action="Details" asp-route-id="@Model.CourseContentId" >Back to Course Content</a>
+
+ 
+
+    <a asp-controller="CourseContents" asp-action="Details" asp-route-id="@Model.CourseContentId">Back to Course Content</a>
 
 </div>

@@ -35,7 +35,7 @@ namespace Blackboard_2_0.Controllers
             }
 
             CourseContentViewModel model = new CourseContentViewModel();
-            model.ContentAreas = _context.ContentAreas.Where(a => a.CourseContentId == id).Include(s => s.ContentLinks)
+            model.ContentAreas = _context.ContentAreas.Where(a => a.CourseContentId == id && a.FolderId == null).Include(s => s.ContentLinks)
                 .ToList();
             model.Folders = _context.Folders.Where(a => a.CourseContentId == id).Include(s => s.ContentAreas).ToList();
 

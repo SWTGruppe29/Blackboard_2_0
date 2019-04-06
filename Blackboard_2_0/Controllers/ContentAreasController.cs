@@ -51,7 +51,9 @@ namespace Blackboard_2_0.Controllers
             if (folderId < 0)
             {
                 ViewData["Check"] = true;
+                /*
                 ViewData["FolderId"] = new SelectList(_context.Folders, "FolderId", "FolderId");
+                */
             }
             else
             {
@@ -79,6 +81,9 @@ namespace Blackboard_2_0.Controllers
                 contentArea.CourseContentId = id;
                 _context.Add(contentArea);
                 await _context.SaveChangesAsync();
+                if(folderId > 0)
+                    return RedirectToAction("Details", "Folders", new { id = folderId });
+                
                 return RedirectToAction("Details","CourseContents",new{id = id});
             }
 

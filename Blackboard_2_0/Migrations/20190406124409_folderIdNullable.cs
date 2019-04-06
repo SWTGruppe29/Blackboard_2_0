@@ -10,17 +10,17 @@ namespace Blackboard_2_0.Migrations
                 name: "FK_ContentAreas_Folders_FolderId",
                 table: "ContentAreas");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Folders_Folders_ParentFolderId",
-                table: "Folders");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_Folders_Folders_ParentFolderId",
+            //    table: "Folders");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Folders_ParentFolderId",
-                table: "Folders");
+            //migrationBuilder.DropIndex(
+            //    name: "IX_Folders_ParentFolderId",
+            //    table: "Folders");
 
-            migrationBuilder.DropColumn(
-                name: "ParentFolderId",
-                table: "Folders");
+            //migrationBuilder.DropColumn(
+            //    name: "ParentFolderId",
+            //    table: "Folders");
 
             migrationBuilder.AlterColumn<int>(
                 name: "FolderId",

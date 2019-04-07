@@ -20,14 +20,15 @@
 
     <h5 class="h5-heading">Content areas:</h5>
     
-    
+ 
+
     @foreach (var item in Model.ContentAreas)
     {
         <div class="content-area">
             <img src="/images/document_on.png"/>
             <div class="textarea">
                 <p class="show contentlink">Create content link</p>
-                <div class="hidden" id="createLink">
+                <div class="hidden" id="createLink"> 
                     <form asp-controller="ContentLinks" asp-action="Create" asp-route-pageId="@ViewContext.RouteData.Values["id"]" asp-route-id="@item.ContentAreaId">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -45,13 +46,12 @@
                 </div>
                 <div class="link-container">
 
-                    @*Her får jeg en fejl, som er null!! Fatter ikke hvorfor*@
-
                     @if (item.ContentLinks.Count > 0)
                     {
                         <p class="attachedFiles">Attached Files:</p>
                         foreach (var link in item.ContentLinks)
                         {
+
                             <div class="contentLinks">
                                 <p>
                                     <img src="/images/document_on.png"/>
@@ -64,6 +64,7 @@
                     }
                 </div>
                 <p>@item.TextBlock</p>
+
             </div>
         </div>
     }

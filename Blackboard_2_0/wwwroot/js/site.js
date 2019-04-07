@@ -28,10 +28,8 @@ $(document).ready(function () {
 
 $(function () {
 
-    $('.show').click(function () {
-
-        $('.hidden').toggle();
-
+    $('.show').click(function (e) {
+        $(e.target).next().toggle();
     });
 
 

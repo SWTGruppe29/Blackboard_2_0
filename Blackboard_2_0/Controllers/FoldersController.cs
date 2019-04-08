@@ -41,7 +41,7 @@ namespace Blackboard_2_0.Controllers
             }
             FolderViewModel model = new FolderViewModel();
             model.Folders = await _context.Folders.Where(f => f.CourseContentId == folder.CourseContentId).ToListAsync();
-            model.ContentAreas = await _context.ContentAreas.Where(c => c.CourseContentId == folder.CourseContentId && c.FolderId == folder.FolderId).ToListAsync();
+            model.ContentAreas = await _context.ContentAreas.Where(c => c.CourseContentId == folder.CourseContentId && c.FolderId == folder.FolderId).Include(c => c.ContentLinks).ToListAsync();
             model.CourseContentId = folder.CourseContentId;
             model.FolderId = folder.FolderId;
             model.Foldername = folder.FolderName;

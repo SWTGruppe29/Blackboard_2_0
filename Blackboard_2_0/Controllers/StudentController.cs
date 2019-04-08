@@ -70,7 +70,7 @@ namespace Blackboard_2_0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Birthday,EnrolledDate,GraduationDate")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace Blackboard_2_0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Birthday,EnrolledDate,GraduationDate")] Student student)
         {
             if (id != student.Id)
             {

@@ -16,7 +16,7 @@ namespace Blackboard_2_0.Models.Data
 
         public List<Attends> Students { get; set; }
         
-        public List<Calendar> Calendars { get; set; }
+        public List<Calendar> Events { get; set; }
         //public Calendar Calendar { get; set; }
 
         public List<CourseContent> CourseContents { get; set; }

@@ -154,11 +154,11 @@ namespace Blackboard_2_0.Migrations
                 columns: new[] { "AssignersId", "AssignmentId", "Grade", "GraderId", "Text" },
                 values: new object[,]
                 {
-                    { 1, 1, "12", 1, "Dette er handin 1 for gruppe 12" },
-                    { 4, 1, "02", 2, "Meh" },
-                    { 3, 2, "4", 1, "Øvv" },
-                    { 2, 3, "-3", 2, "Handin for gruppe 11" },
-                    { 5, 4, "10", 2, "Godt forsøg" }
+                    { 1, 1, "12", 3, "Dette er handin 1 for gruppe 12" },
+                    { 4, 1, "02", 4, "Meh" },
+                    { 3, 2, "4", 3, "Øvv" },
+                    { 2, 3, "-3", 4, "Handin for gruppe 11" },
+                    { 5, 4, "10", 4, "Godt forsøg" }
                 });
 
             migrationBuilder.InsertData(

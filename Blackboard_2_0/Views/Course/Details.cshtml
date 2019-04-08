@@ -16,8 +16,8 @@
             <a class="course-content-link" asp-controller="Course" asp-action="Details" asp-route-id="@ViewContext.RouteData.Values["id"]">Forside</a>
             <hr />
             <p class="course-content-heading">Information</p>
+            <a asp-controller="Calendars" asp-action="Index" class="course-content-link">Calendar</a>
             <a class="course-content-link">Announcements</a>
-            <a class="course-content-link">Tools</a>
             <hr />
             <p class="course-content-heading">Teaching</p>
 
@@ -33,7 +33,6 @@
 
     <div id="right" class="main-detail-content column">
         <div class="main-content bottom">
-            
             <div class="top-headline">
                 <h1>Forside</h1>
                 <p>
@@ -42,132 +41,144 @@
             </div>
             
             <div class="course-content-areas">
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Students
-                            </th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Students)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Student.FirstName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(i => item.Student.LastName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(i => item.Status)
-                                </td>
-                                <td>
-                                    <text>au</text>@for (var i = item.Student.Id.ToString().Length; i < 6; i++)
+                
+                <div class="row1">
+                    <div class="main1-area">
+                        <div class="header-area">
+                            <img class="showArea" src="/images/minus.png" />
+                            <h5>Student</h5>
+                        </div>
+                        <div class="showDiv main1-content">
+                            <table class="table-head">
+                                <thead style="border-bottom: 2px solid #ececec;">
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>Status</th>
+                                    <th>auID</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Students)
                                     {
-                                        <text>0</text>
-                                    }<text>@item.Student.Id.ToString()</text>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                        <tr>
+                                            <td>@item.Student.FirstName @item.Student.LastName</td>
+                                            <td>@item.Status</td>
+                                            <td>
+                                                <text>au</text>
+                                                @for (var i = item.Student.Id.ToString().Length; i < 6; i++)
+                                                {
+                                                    <text>0</text>
+                                                }
+                                                <text>@item.Student.Id.ToString()</text>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                 
+                        </div>
+                    </div>
+                    
+                    <div class="main1-area">
+                        <div class="header-area">
+                            <img class="showArea" src="/images/minus.png" />
+                            <h5>Teacher</h5>
+                        </div>
+                        <div class="main1-content showDiv">
+                            <table class="table-head">
+                                <thead style="border-bottom: 2px solid #ececec;">
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>Role</th>
+                                    <th>auID</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var item in Model.Teachers)
+                                {
+                                    <tr>
+                                        <td>@item.Teacher.FirstName @item.Teacher.LastName</td>
+                                        <td>@item.Role</td>
+                                        <td>
+                                            <text>au</text>
+                                            @for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
+                                            {
+                                                <text>0</text>
+                                            }
+                                            <text>@item.Teacher.Id.ToString()</text>
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
 
-                <br />
-                <br />
+                        </div>
+                    </div>
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Teachers
-                            </th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Teachers)
-                        {
+                </div>
+
+            
+                
+                
+                <div class="main2-area">
+                    <div class="header-area">
+                        <img class="showArea" src="/images/minus.png" />
+                        <h5>Assignments</h5>
+                    </div>
+                    <div class="main1-content showDiv">
+                        <table class="table-head">
+                            <thead style="border-bottom: 2px solid #ececec;">
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Teacher.FirstName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(i => item.Teacher.LastName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(i => item.Role)
-                                </td>
-                                <td>
-                                    <text>au</text>@for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
-                                    {
-                                        <text>0</text>
-                                    }@item.Teacher.Id.ToString()
-                                </td>
+                                <th>
+                                    Name
+                                </th>
+                                <th>Max assigners</th>
+                                <th>Course ID</th>
+                                <th></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model.Assignments)
+                            {
+                                <tr>
+                                    <td>
+                                        <a asp-controller="HandIn" asp-action="ViewHandInsForAssignment" asp-route-id="@item.AssignmentId">@Html.DisplayFor(modelItem => item.Name)</a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(i => item.MaxAssigners)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(i => item.CourseId)
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Assignments" asp-action="Delete" asp-route-id="@item.AssignmentId">Delete</a>
+                                    </td>
+                                    <td>
+                                        @{
+                                            if (item.MaxAssigners == 1)
+                                            {
+                                                <a asp-controller="HandIn" asp-action="HandIn" asp-route-id="@item.AssignmentId">Handin</a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="HandIn" asp-action="GroupOverview" asp-route-id="@item.AssignmentId">Handin</a>
+                                            }
+                                        }
 
-                <br />
-                <br />
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Assignments
-            </th>
-            <th>
-                Max assigners
-            </th>
-            <th>
-                Course id
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Assignments)
-        {
-        <tr>
-            <td>
-                <a asp-controller="HandIn" asp-action="ViewHandInsForAssignment" asp-route-id="@item.AssignmentId" >@Html.DisplayFor(modelItem => item.Name)</a>
-            </td>
-            <td>
-                @Html.DisplayFor(i => item.MaxAssigners)
-            </td>
-            <td>
-                @Html.DisplayFor(i => item.CourseId)
-            </td>
-            <td>
-                <a asp-controller="Assignments" asp-action="Delete" asp-route-id="@item.AssignmentId">Delete</a>
-            </td>
-            <td>
-                @{
-                    if (item.MaxAssigners == 1)
-                    {
-                        <a asp-controller="HandIn" asp-action="HandIn" asp-route-id="@item.AssignmentId">Handin</a>
-                    }
-                    else
-                    {
-                        <a asp-controller="HandIn" asp-action="GroupOverview" asp-route-id="@item.AssignmentId">Handin</a>
-                    }
-                }
-
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
 
                 <a class="btnStyle" asp-controller="Assignments" asp-action="Create" asp-route-id="@ViewContext.RouteData.Values["id"]">Add assignment</a>
                 <a class="btnStyle" asp-controller="Course" asp-action="Index">Back to Course</a>

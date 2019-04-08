@@ -4,11 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>GroupHandIn</h1>
 
-<a class="btnStyle" asp-controller="HandIn" asp-action="CreateGroup" asp-route-id="@Model.AssignmentId">Create group</a>
-<a class="btnStyle" asp-controller="HandIn" asp-action="HandIn" asp-route-id="@Model.AssignmentId">Handin</a>
-<a class="btnStyle" asp-controller="Course" asp-action="Details" asp-route-id="@Model.CourseId">Back to course</a>
+<div class="top-headline" style="border-bottom:1px solid rgba(0, 0, 0, 0.1)">
+    <h1>GroupHandIn</h1>
+    <p>
+        
+        <a class="btnStyle" asp-controller="HandIn" asp-action="CreateGroup" asp-route-id="@Model.AssignmentId">Create group</a>
+        <a class="btnStyle" asp-controller="HandIn" asp-action="HandIn" asp-route-id="@Model.AssignmentId">Handin</a>
+        <a class="btnStyle" asp-controller="Course" asp-action="Details" asp-route-id="@Model.CourseId">Back to course</a>
+
+    </p>
+</div>
 
 <h3>Groups</h3>
 <table class="table">

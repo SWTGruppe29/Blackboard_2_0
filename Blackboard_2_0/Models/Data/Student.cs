@@ -20,7 +20,9 @@ namespace Blackboard_2_0.Models.Data
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         public DateTime Birthday { get; set; }
+        [Display(Name = "Enrolled date")]
         public DateTime EnrolledDate { get; set; }
+        [Display(Name = "Graduation date")]
         public DateTime GraduationDate { get; set; }
         public List<Attends> Attends { get; set; }
         public List<StudentAssigners> Assigners { get; set; }

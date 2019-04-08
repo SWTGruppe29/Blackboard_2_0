@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Blackboard_2_0.Models.Data;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Blackboard_2_0.Controllers
 {
@@ -33,10 +34,20 @@ namespace Blackboard_2_0.Controllers
                 return NotFound();
             }
 
+            var groups = _context.StudentAssignerses.Where(s => s.StudentId == id).ToList();
+
+            var grades = new List<IIncludableQueryable<HandIn, Course>>();
+
+            foreach (var group in groups)
+            {
+                grades.Add(_context.HandIns.Where(g=>g.AssignersId==group.AssignersId).Include(x=>x.Assignment).Include(x=>x.Assignment.Course));
+            }
+
             var viewModel = new StudentDetailsViewModel()
             {
                 Student = await _context.Students.FirstOrDefaultAsync(m => m.Id == id),
-                Attends = _context.Attends.Where(s => s.StudentId == id).Include(c=>c.Course).ToList()
+                Attends = _context.Attends.Where(s => s.StudentId == id).Include(c=>c.Course).ToList(),
+                Grades = grades
             };
            
 
@@ -59,7 +70,7 @@ namespace Blackboard_2_0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Birthday,EnrolledDate,GraduationDate")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +109,7 @@ namespace Blackboard_2_0.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Birthday,EnrolledDate,GraduationDate")] Student student)
         {
             if (id != student.Id)
             {

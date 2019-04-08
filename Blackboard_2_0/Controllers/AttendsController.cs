@@ -23,7 +23,15 @@ namespace Blackboard_2_0.Controllers
         // GET: Attends/Create
         public IActionResult Create(int id)
         {
-            ViewData["StudentId"] = new SelectList(_context.Students.Where(s => !s.Attends.Exists(x => x.CourseId == id)), "Id", "Id");
+            var students = _context.Students.Where(s => !s.Attends.Exists(x => x.CourseId == id));
+
+            IEnumerable<SelectListItem> selectList = from s in students
+                select new SelectListItem
+                {
+                    Value = s.Id.ToString(),
+                    Text = s.FirstName + " " + s.LastName
+                };
+            ViewData["StudentId"] = new SelectList(selectList, "Value", "Text");
             return View();
         }
 

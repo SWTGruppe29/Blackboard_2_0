@@ -14,40 +14,58 @@
 
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model=>model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrolledDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GraduationDate)
+            </th>
+        </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            <text>au</text>@for (var i = item.Id.ToString().Length; i < 6; i++)
-            {
-                <text>0</text>
-            }<text>@item.Id.ToString()</text>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        </td>
-    </tr>
+        <tr>
+            <td>
+                <text>au</text>@for (var i = item.Id.ToString().Length; i < 6; i++)
+                {
+                    <text>0</text>
+                }<text>@item.Id.ToString()</text>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday.Day)-@Html.DisplayFor(modelItem => item.EnrolledDate.Month)-@Html.DisplayFor(modelItem => item.EnrolledDate.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrolledDate.Day)-@Html.DisplayFor(modelItem => item.EnrolledDate.Month)-@Html.DisplayFor(modelItem => item.EnrolledDate.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GraduationDate.Day)-@Html.DisplayFor(modelItem => item.EnrolledDate.Month)-@Html.DisplayFor(modelItem => item.EnrolledDate.Year)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
 }
     </tbody>
 </table>

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blackboard_2_0.Models.Data
 {
-    public static class BBContextExtension
+    public static class BBContextExtension 
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {

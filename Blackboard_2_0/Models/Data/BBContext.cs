@@ -91,10 +91,17 @@ namespace Blackboard_2_0.Models.Data
                 .IsRequired(false);
 
 
+            modelBuilder.Entity<Calendar>()
+                .HasIndex(e => e.CourseId)
+                .IsUnique(false);
+
+
             modelBuilder.Entity<Assigners>()
                 .HasOne(a => a.Assignment)
                 .WithMany(b => b.Assigners)
                 .HasForeignKey(a => a.AssignmentId);
+
+
 
             Seed(modelBuilder);
         }
@@ -512,6 +519,8 @@ namespace Blackboard_2_0.Models.Data
                     Type = "Lecture"
                 }
             );
+            
+            
         }
     }
 }

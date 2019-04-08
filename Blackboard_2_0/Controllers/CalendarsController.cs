@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blackboard_2_0.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,17 +13,26 @@ namespace Blackboard_2_0.Controllers
     public class CalendarsController : Controller
     {
         private readonly BbContext _context;
-
+        private IEnumerable<string> list;
         public CalendarsController(BbContext context)
         {
             _context = context;
+            list = new List<string>() { "Course lecture", "Handin", "Deadline" };
         }
 
         // GET: Calendars
         public async Task<IActionResult> Index()
         {
-            var bbContext = _context.Calendars.Include(c => c.Course);
-            return View(await bbContext.ToListAsync());
+          
+
+            var vm = new CalendarViewModel
+            {
+                Calendars = await _context.Calendars.Include(c => c.Course).ToListAsync()
+            };
+
+
+
+            return View(vm);
         }
 
         // GET: Calendars/Details/5
@@ -47,7 +57,10 @@ namespace Blackboard_2_0.Controllers
         // GET: Calendars/Create
         public IActionResult Create()
         {
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId");
+            ViewData["Name"] = new SelectList(_context.Courses, "CourseId", "Name");
+            
+            
+            ViewData["Type"] = new SelectList(list, "Type");
             return View();
         }
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Blackboard_2_0.Models.Data.Calendar>
+﻿@model CalendarViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,25 +14,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Course)
+                Course
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EventDate)
+                Event date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                Type
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EventName)
+                Event name
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Calendars) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Course.CourseId)
+                <a asp-controller="Course" asp-action="Details" asp-route-id="@item.CourseId">
+                    Course name
+                </a>
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EventDate)

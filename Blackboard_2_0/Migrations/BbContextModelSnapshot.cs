@@ -209,8 +209,7 @@ namespace Blackboard_2_0.Migrations
 
                     b.HasKey("EventId");
 
-                    b.HasIndex("CourseId")
-                        .IsUnique();
+                    b.HasIndex("CourseId");
 
                     b.ToTable("Calendars");
 
@@ -350,9 +349,13 @@ namespace Blackboard_2_0.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CalendarEventId");
+
                     b.Property<string>("Name");
 
                     b.HasKey("CourseId");
+
+                    b.HasIndex("CalendarEventId");
 
                     b.ToTable("Courses");
 
@@ -696,14 +699,6 @@ namespace Blackboard_2_0.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Blackboard_2_0.Models.Data.Calendar", b =>
-                {
-                    b.HasOne("Blackboard_2_0.Models.Data.Course", "Course")
-                        .WithOne("Calendar")
-                        .HasForeignKey("Blackboard_2_0.Models.Data.Calendar", "CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Blackboard_2_0.Models.Data.ContentArea", b =>
                 {
                     b.HasOne("Blackboard_2_0.Models.Data.CourseContent", "CourseContent")
@@ -722,6 +717,13 @@ namespace Blackboard_2_0.Migrations
                         .WithMany("ContentLinks")
                         .HasForeignKey("ContentAreaId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Blackboard_2_0.Models.Data.Course", b =>
+                {
+                    b.HasOne("Blackboard_2_0.Models.Data.Calendar", "Calendar")
+                        .WithMany("Course")
+                        .HasForeignKey("CalendarEventId");
                 });
 
             modelBuilder.Entity("Blackboard_2_0.Models.Data.CourseContent", b =>

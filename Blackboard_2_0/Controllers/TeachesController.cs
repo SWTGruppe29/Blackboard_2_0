@@ -23,7 +23,14 @@ namespace Blackboard_2_0.Controllers
         // GET: Attends/Create
         public IActionResult Create(int id)
         {
-            ViewData["AuId"] = new SelectList(_context.Teachers.Where(t => !t.Teaches.Exists(x => x.CourseId == id)), "Id", "Id");
+            var teachers = _context.Teachers.Where(t => !t.Teaches.Exists(x => x.CourseId == id));
+            IEnumerable<SelectListItem> selectList = from t in teachers
+                select new SelectListItem
+                {
+                    Value = t.Id.ToString(),
+                    Text = t.FirstName + " " + t.LastName
+                };
+            ViewData["AuId"] = new SelectList(selectList, "Value", "Text");
 
             return View();
         }
@@ -40,7 +47,7 @@ namespace Blackboard_2_0.Controllers
                 teaches.CourseId = id;
                 _context.Add(teaches);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Course", teaches.CourseId);
+                return RedirectToAction("Details", "Course", new {id=teaches.CourseId});
             }
 
             ViewData["AuId"] = new SelectList(_context.Teachers, "Id", "Id", teaches.AuId);

@@ -95,6 +95,8 @@ namespace Blackboard_2_0.Models.Data
                 .HasOne(a => a.Assignment)
                 .WithMany(b => b.Assigners)
                 .HasForeignKey(a => a.AssignmentId);
+
+            modelBuilder.Seed();
         }
     }
 }

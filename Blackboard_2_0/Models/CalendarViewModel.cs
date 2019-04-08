@@ -11,10 +11,10 @@ namespace Blackboard_2_0.Models
         public CalendarViewModel()
         {
             Calendars = new List<Calendar>();
-            
+            Courses = new List<Course>();
         }
         public List<Calendar> Calendars { get; set; }
-        public string CourseName { get; set; }
+        public List<Course> Courses { get; set; }
 
     }
 }

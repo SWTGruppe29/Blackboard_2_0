@@ -23,12 +23,11 @@ namespace Blackboard_2_0.Controllers
         // GET: Calendars
         public async Task<IActionResult> Index()
         {
-          
 
-            var vm = new CalendarViewModel
-            {
-                Calendars = await _context.Calendars.Include(c => c.Course).ToListAsync()
-            };
+
+            var vm = new CalendarViewModel();
+            vm.Calendars = await _context.Calendars.Include(c => c.Course).ToListAsync();
+            vm.Courses = await _context.Courses.Include(c => c.Calendar).ToListAsync();
 
 
 

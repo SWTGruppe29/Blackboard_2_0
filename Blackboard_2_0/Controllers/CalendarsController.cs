@@ -27,10 +27,8 @@ namespace Blackboard_2_0.Controllers
 
             var vm = new CalendarViewModel();
             vm.Calendars = await _context.Calendars.Include(c => c.Course).ToListAsync();
-            vm.Courses = await _context.Courses.Include(c => c.Calendar).ToListAsync();
-
-
-
+            
+        
             return View(vm);
         }
 

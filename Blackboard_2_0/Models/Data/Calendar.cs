@@ -17,7 +17,8 @@ namespace Blackboard_2_0.Models.Data
 
 
         public int CourseId { get; set; }
-        public List<Course> Course { get; set; }
+        //public List<Course> Course { get; set; }
+        public Course Course { get; set; }
 
         [Display(Name = "Event date")]
         public DateTime EventDate { get; set; }

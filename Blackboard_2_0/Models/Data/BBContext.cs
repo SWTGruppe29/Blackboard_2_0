@@ -109,13 +109,7 @@ namespace Blackboard_2_0.Models.Data
 
         private void Seed(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>().HasData(
-                new Student
-                {
-                    AuId = new AuId(),
-
-                });
-
+            
             modelBuilder.Entity<AuId>().HasData(
                 new AuId()
                 {

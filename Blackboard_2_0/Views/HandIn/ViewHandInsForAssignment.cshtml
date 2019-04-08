@@ -5,60 +5,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>HandIns for Assignment </h1>
+<div class="top-headline" style="border-bottom:1px solid rgba(0, 0, 0, 0.1)">
+    <h1>HandIns for Assignment</h1>
+    <p>
+    </p>
+</div>
+
 
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Grade)
-        </th>
-        <th>
-            @if (Model.First().Assignment.MaxAssigners > 1)
-            {
-                <text>Group</Text>
-            }
-            else
-            {
-                <text>Student</Text>
-            }
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Grader)
-        </th>
-        <th>HandIn Text</th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @if (Model.First().Assignment.MaxAssigners > 1)
+                {
+                    <text>Group</Text>
+                }
+                else
+                {
+                    <text>Student</Text>
+                }
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grader)
+            </th>
+            <th>HandIn Text</th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Grade)
-            </td>
-            <td>
-                @item.Assigners.Name
-            </td>
-            <td>
-                @{
-                    if (item.GraderId != null)
-                    {
-                        @item.Grader.FirstName
-                        <text> </text>
-                        @item.Grader.LastName
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @item.Assigners.Name
+                </td>
+                <td>
+                    @{
+                        if (item.GraderId != null)
+                        {
+                            @item.Grader.FirstName
+                            <text> </text>
+                            @item.Grader.LastName
+                        }
                     }
-                }
 
-            </td>
-            <td>
-                @Html.DisplayFor(x => item.Text)
-            </td>
-            <td>
-                <a asp-controller="HandIn" asp-action="Grade" asp-route-AssignersId="@item.AssignersId" asp-route-AssignmentId="@item.AssignmentId">Grade</a>
-            </td>
-        </tr>
-    }
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Text)
+                </td>
+                <td>
+                    <a asp-controller="HandIn" asp-action="Grade" asp-route-AssignersId="@item.AssignersId" asp-route-AssignmentId="@item.AssignmentId">Grade</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 

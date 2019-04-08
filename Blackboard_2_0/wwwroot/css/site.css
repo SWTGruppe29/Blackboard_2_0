@@ -13,6 +13,69 @@ hr {
     margin-top: 0px !important;
    
 }
+
+.row1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+.table-head {
+    width: 100%;
+}
+.table-head tr {
+    padding: 10px 0px !important;
+}
+
+.main1-area tr {
+    padding: 10px 0px ;
+}
+
+.description-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0px;
+}
+.main1-content {
+    background-color: white;
+    padding: 8px;
+}
+
+.main2-area {
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+.main1-area {
+    width: 49%;
+}
+.showArea {
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+}
+.header-area h5 {
+    display: inline-block;
+    margin-left: 10px;
+    padding-top: 7px;
+}
+.header-area img {
+    width: 30px;
+    height: 30px;
+}
+
+
+.header-area {
+    background-color: #45be55;
+    padding: 6px 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+
+    
+}
+
 .content-area {
     background-color: white !important;
     padding: 20px !important;
@@ -113,8 +176,8 @@ hr {
 }
 
 .course-content-areas {
-    background-color: white;
-    padding: 20px;
+    /*background-color: white;
+    padding: 20px;*/
 }
 .course-content-heading {
     font-weight: bold;

@@ -26,11 +26,37 @@ $(document).ready(function () {
     
 });
 
+
+function rotate($el, degrees) {
+    $el.css({
+        '-webkit-transform': 'rotate(' + degrees + 'deg)',
+        '-moz-transform': 'rotate(' + degrees + 'deg)',
+        '-ms-transform': 'rotate(' + degrees + 'deg)',
+        '-o-transform': 'rotate(' + degrees + 'deg)',
+        'transform': 'rotate(' + degrees + 'deg)',
+        'zoom': 1
+
+    });
+}
+
 $(function () {
 
-    $('.show').click(function (e) {
-        $(e.target).next().toggle();
+    $('.showArea').click(function (e) {
+        var div = $(this).parent(".header-area").next();
+        div.toggle();
+        var degree = 0
+        if (!div.is(':visible')) {
+
+            $(e.target).attr("src", "/images/plus.png");
+            rotate($(e.target), 90);
+            
+        } else {
+            
+            $(e.target).attr("src", "/images/minus.png");
+            rotate($(e.target), 0);
+        }
     });
 
 
 });
+

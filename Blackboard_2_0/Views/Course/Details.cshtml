@@ -66,12 +66,10 @@
                                             <td>@item.Student.FirstName @item.Student.LastName</td>
                                             <td>@item.Status</td>
                                             <td>
-                                                <text>au</text>
-                                                @for (var i = item.Student.Id.ToString().Length; i < 6; i++)
+                                                <text>au</text>@for (var i = item.Student.Id.ToString().Length; i < 6; i++)
                                                 {
                                                     <text>0</text>
-                                                }
-                                                <text>@item.Student.Id.ToString()</text>
+                                                }<text>@item.Student.Id.ToString()</text>
                                             </td>
                                         </tr>
                                     }
@@ -104,12 +102,10 @@
                                         <td>@item.Teacher.FirstName @item.Teacher.LastName</td>
                                         <td>@item.Role</td>
                                         <td>
-                                            <text>au</text>
-                                            @for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
+                                            <text>au</text>@for (var i = item.Teacher.Id.ToString().Length; i < 6; i++)
                                             {
                                                 <text>0</text>
-                                            }
-                                            <text>@item.Teacher.Id.ToString()</text>
+                                            }<text>@item.Teacher.Id.ToString()</text>
                                         </td>
                                     </tr>
                                 }

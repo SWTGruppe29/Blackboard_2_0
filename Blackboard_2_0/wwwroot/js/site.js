@@ -60,26 +60,6 @@ $(function () {
 });
 
 
-$(function () {
-
-    $('.showArea').click(function (e) {
-        var div = $(this).parent(".header-area").next();
-        div.toggle();
-        var degree = 0
-        if (!div.is(':visible')) {
-
-            $(e.target).attr("src", "/images/plus.png");
-            rotate($(e.target), 90);
-
-        } else {
-
-            $(e.target).attr("src", "/images/minus.png");
-            rotate($(e.target), 0);
-        }
-    });
-
-});
-
 
 $(function () {
 

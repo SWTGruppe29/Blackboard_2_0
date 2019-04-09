@@ -53,6 +53,7 @@ hr {
     -moz-transition: all 200ms ease-in-out;
     -o-transition: all 200ms ease-in-out;
     -ms-transition: all 200ms ease-in-out;
+    cursor: pointer;
 }
 .header-area h5 {
     display: inline-block;

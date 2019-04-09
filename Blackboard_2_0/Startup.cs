@@ -57,12 +57,23 @@ namespace Blackboard_2_0
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                var context = serviceScope.ServiceProvider.GetRequiredService<BbContext>();
+
+                
+                context.Database.Migrate();
+                context.Database.EnsureCreated();
+                
+                
+            }
+
+                app.UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+                });
         }
     }
 }

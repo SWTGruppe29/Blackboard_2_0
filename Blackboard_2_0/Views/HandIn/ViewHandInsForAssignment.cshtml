@@ -19,7 +19,11 @@
                 @Html.DisplayNameFor(model => model.Grade)
             </th>
             <th>
-                @if (Model.First().Assignment.MaxAssigners > 1)
+                @if (Model.FirstOrDefault() == null)
+                {
+                    <text>Group</text>
+                }
+                else if (Model.FirstOrDefault().Assignment.MaxAssigners > 1)
                 {
                     <text>Group</Text>
                 }

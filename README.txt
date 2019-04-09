@@ -1,5 +1,6 @@
-﻿For at starte applikationen trykkes på ctrl-f5. Du kommer nu ind på forsiden. 
-Brug navigations baren øverst til højre for at navigere mellem forskellige views. 
+﻿For at starte applikationen trykkes på ctrl-f5. Programmet er lidt lang tid om at starte op da den laver og opdaterer databasen. Det er derfor ikke nødvendigt at skrive update-database i PM.
+Du kommer nu ind på forsiden. 
+Brug navigations baren øverst til højre for at navigere mellem de forskellige views. 
 
 Ved at vælge courses og derefter vælge et course kan man se de studerende på kurset, samt lærere opgaver og links til content i menuen til venstre. 
 Vælg gerne I4DAB kurset da det er her der er mest dummy-data. 

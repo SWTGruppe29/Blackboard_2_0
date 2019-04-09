@@ -61,7 +61,7 @@ namespace Blackboard_2_0
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<BbContext>();
 
-                context.Database.EnsureDeleted();
+                
                 context.Database.Migrate();
                 context.Database.EnsureCreated();
                 
